@@ -1,0 +1,113 @@
+/* ContaPagarAvulsoForm.css & ContaReceberAvulsoForm.css */
+
+.cpa-main-form-container {
+    display: flex;
+    /* Alinha o SideBar e o Header lado a lado */
+    min-height: 100vh;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.cpa-main-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Permite que o conteúdo cresça e se ajuste ao espaço */
+    width: calc(100% - 250px);
+    /* Subtrai a largura do Sidebar (ajuste conforme a largura real do Sidebar) */
+    padding-left: 50px;
+    /* Adiciona espaço da largura do Sidebar para o conteúdo */
+    padding-top: 30px;
+}
+
+.cpa-cliente-form-container {
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+    margin-top: 20px;
+    margin-right: 30px;
+    width: auto;
+}
+
+/* Estilos para garantir que o Header ocupe toda a largura disponível */
+header {
+    width: 100%;
+    background-color: #f8f9fa;
+    /* Ajuste conforme necessário */
+    padding: 10px 20px;
+    /* Ajuste conforme necessário */
+    box-sizing: border-box;
+}
+
+.contas-pagar-avulso-form {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.contas-pagar-avulso-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.contas-pagar-avulso-form input[type="text"],
+.contas-pagar-avulso-form input[type="date"],
+.contas-pagar-avulso-form input[type="number"],
+.contas-pagar-avulso-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.contas-pagar-avulso-form button[type="submit"] {
+    width: 15%;
+    padding: 10px;
+    background-color: #1db8c0;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contas-pagar-avulso-form button[type="submit"]:hover {
+    background-color: #0799a3;
+}
+
+.cpa-projetos-section {
+    padding-bottom: 20px;
+}
+
+.cpa-projetos-section h3 {
+    padding: 20px;
+    margin-left: -20px;
+}
+
+.contas-pagar-avulso-form .message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-container .message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.form-container .message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}

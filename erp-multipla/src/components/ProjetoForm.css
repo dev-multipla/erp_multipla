@@ -1,0 +1,160 @@
+/* Container geral do layout */
+.projeto-form-container {
+    display: flex;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding-right: 20px;
+    padding-top: 1px;
+}
+
+.projeto-form-sidebar {
+    width: 25%;
+    background: linear-gradient(135deg, #037C74, #65C1C2);
+    color: white;
+    padding: 20px;
+    /*border-radius: 8px;
+    margin-right: 20px; */
+    box-sizing: border-box;
+    height: 97vh;
+    margin-top: 20px;
+    border-radius: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+/* Container principal do formulário */
+.p-main-content {
+    display: flex;
+    width: 69%;
+    background-color: white;
+    border-radius: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 97vh;
+    margin-top: 20px;
+    margin-left: 10px;
+    
+}
+
+.p-projeto-form-container {
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 75vh;
+    width: 85%;
+    position: relative;
+    left: 10%;
+    
+}
+
+/* Estilização geral do formulário */
+.p-projeto-form-container h2 {
+    text-align: left;
+    margin-bottom: 60px;
+    color: #333;
+}
+
+.p-projeto-form-container form {
+    width: 100%;
+    padding: 30px;
+    margin-right: 80px;
+    border-left: #f0efef solid;
+    
+}
+
+/* Estilização das linhas do formulário */
+.p-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.p-form-group {
+    flex: 1;
+    min-width: 250px;
+    padding: 0 10px;
+    margin-bottom: 15px;
+}
+
+/* Estilização dos labels */
+.p-projeto-form-container label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.9em;
+}
+
+/* Estilização dos campos de input */
+.p-projeto-form-container input[type="text"],
+.p-projeto-form-container input[type="date"],
+.p-projeto-form-container select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    font-size: 0.9em;
+}
+
+/* Estilização das ações do formulário */
+.p-form-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+/* Estilização dos botões */
+.p-btn-primary {
+    background-color: #009C95 !important;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9em;
+}
+
+.p-btn-primary:hover {
+    background-color: #01726c !important; 
+}
+
+.p-btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9em;
+}
+
+.p-btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.projeto-form-sidebar .additional-info {
+    background-color: #77a3e6; /* Blue background color */
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px; /* Add spacing below the blue section */
+    flex-grow: 1;
+}
+
+
+@media (max-width: 768px) { 
+    .layout-container {
+      grid-template-columns: 1fr; /* Stack columns vertically on smaller screens */
+    }
+  }

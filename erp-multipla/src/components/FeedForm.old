@@ -1,0 +1,40 @@
+/* FeedForm.css */
+feed-form {
+    display: flex; /* Usamos flexbox para organizar os cards */
+    flex-wrap: wrap; /* Permite que os cards quebrem a linha */
+    justify-content: space-between; /* Distribui os cards com espaço entre eles */
+  }
+  
+  
+.feed-form h2 {
+    /* Estilos para o título */
+}
+.cards-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h3 {
+    /*border: 1px solid #ccc;*/
+    border-radius: 5px;
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+  }
+  
+  .card p {
+    /* Estilos para o título */
+  }
+  
+  

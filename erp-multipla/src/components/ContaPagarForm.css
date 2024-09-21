@@ -1,0 +1,228 @@
+.container {
+  padding: 20px;
+  flex-grow: 1;
+  background-color: #f7f7f7;
+  height: 99vh;
+}
+
+.cp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cp-header h1 {
+  font-size: 24px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info img {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.meu-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 20px rgba(148, 146, 146, 0.1);
+  flex: 1;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.meu-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #34495e;
+
+}
+
+.meu-card p {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2ace9d;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #2C3E50;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.project-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.project-group span {
+  width: 30%;
+  background-color: #f1f4f9;
+  padding: 12px;
+  display: flex;
+  margin-right: 10px;
+  font-size: 16px;
+  border-left: 2px solid #3498db;
+  border-bottom: 1px solid #3498db;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.project-group select,
+.project-group input {
+  width: 100%;
+  padding: 12px;
+  display: flex;
+  margin-right: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.project-group button {
+  width: 8%;
+  background-color: #e74c3c;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-project-btn {
+  width: 6%;
+  background-color: #3498db !important;
+  color: white !important;
+  padding: 7px !important;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 15px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.total-group {
+  font-size: 18px;
+  font-weight: 500;
+  color: #2C3E50;
+  margin-top: 20px;
+  margin-left: 15px;
+  width: 15%;
+  border: 0.5px solid#ccc;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 20px rgba(148, 146, 146, 0.1);
+  
+
+}
+
+.contract-info {
+  background-color: #f1f4f9;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 5px solid #3498db;
+  margin-left: 16px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.contract-info p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  
+}
+
+.cp-submit-btn {
+  width: 10%;
+  background-color: #3498db !important;
+  color: white !important;
+  padding: 7px !important;
+  font-size: 18px;
+  border: none;
+  margin-left: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.submit:hover {
+  background-color: #2980b9;
+}
+
+.error-message {
+  color: red;
+}
+
+.success-message {
+  color: #009C95;
+}
+
+.botao-preencher {
+  background-color: #4CAF50; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  padding: 10px 20px; /* Espaçamento interno */
+  border: none; /* Sem borda */
+  border-radius: 5px; /* Bordas arredondadas */
+  cursor: pointer; /* Cursor de ponteiro */
+  font-size: 16px; /* Tamanho da fonte */
+  margin-top: 20px; /* Espaçamento superior */
+  position: relative;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+
+.tooltip-text {
+margin-left: 8px; /* Espaçamento entre o ícone e o texto */
+background-color: #333; /* Cor de fundo */
+color: #fff; /* Cor do texto */
+padding: 5px; /* Espaçamento interno */
+border-radius: 4px; /* Bordas arredondadas */
+position: absolute; /* Posição absoluta */
+z-index: 1; /* Garantir que fique acima de outros elementos */
+white-space: nowrap; /* Evitar quebra de linha */
+display: none;
+left: 100%;
+top: 50%;
+transform: translateY(-50%)
+}
+
+.botao-preencher:hover .tooltip-text,
+.botao-preencher:focus .tooltip-text {
+background-color: #45a049; /* Cor de fundo ao passar o mouse */
+display: block;
+}

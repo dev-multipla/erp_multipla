@@ -1,0 +1,28 @@
+/* SharedStyles.css */
+
+:root {
+    --primary-color: #009c95;
+    --secondary-color: #ccc;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+  }
+  
+  .btn-secondary {
+    background-color: var(--secondary-color);
+    color: #333;
+  }

@@ -1,0 +1,187 @@
+/* Container geral do layout */
+.for-main-container {
+    display: flex;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding-right: 20px;
+    padding-top: 1px;
+    
+}
+/* Sidebar com informações adicionais */
+.left-panel {
+    width: 25%;
+    background: linear-gradient(135deg, #037C74, #65C1C2);
+    color: white;
+    padding: 20px;
+    /*border-radius: 8px;
+    margin-right: 20px; */
+    box-sizing: border-box;
+    height: 97vh;
+    margin-top: 20px;
+    border-radius: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.left-panel h3 {
+    margin-top: 0;
+    
+}
+
+/* Container principal do formulário */
+.for-main-content {
+    display: flex;
+    width: 69%;
+    background-color: white;
+    border-radius: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 97vh;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.right-panel {
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 75vh;
+    width: 85%;
+    position: relative;
+    left: 10%;
+}
+
+/* Estilização geral do formulário */
+.right-panel h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.right-panel form {
+    width: 100%;
+}
+
+/* Estilização das linhas do formulário */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    align-items: center;
+}    
+
+.form-group {
+    flex: 1;
+    min-width: 250px;
+    padding: 0 10px;
+    margin-bottom: 15px;
+}
+
+/* Estilização dos labels */
+.right-panel label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Estilo para inputs menores */
+.right-panel input.input-pequeno[type="text"] {
+    width: 120px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.right-panel input.input-medio[type="text"] {
+    width: 250px; /* Tamanho típico para campos de telefone */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Estilo para inputs de email (mesmo estilo que input-grande) */
+.right-panel input.input-grande[type="email"] {
+    width: 100%; /* Tamanho típico para campos de email */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Estilo para inputs maiores */
+.right-panel input.input-grande[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Override other general styles if needed */
+form input.input-pequeno[type="text"] {
+    width: 120px !important;
+}
+form input.input-grande[type="text"] {
+    width: 100% !important;
+}
+
+/* Estilização dos campos de input */
+.right-panel input[type="text"],
+.right-panel input[type="date"],
+.right-panel select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    font-size: 0.9em;
+}
+
+/* Estilização das ações do formulário */
+.for-form-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+/* Estilização dos botões */
+.for-btn-primary {
+    background-color: #009C95 !important;
+    color: white !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 10px 20px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.for-btn-primary:hover {
+    background-color: #01726c !important;
+}
+
+.for-btn-secondary {
+    background-color: #6c757d !important;
+    color: white !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 10px 20px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.for-btn-secondary:hover {
+    background-color: #5a6268 !important;
+}

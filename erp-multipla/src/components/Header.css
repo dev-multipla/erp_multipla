@@ -1,0 +1,265 @@
+/* Header.css */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #F4F6F9;
+  color: white;
+  position: relative;
+  top: -3%;
+  left: -1.5%;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+
+}
+
+.menu-icon {
+  display: none;
+  /* Ícone escondido no desktop */
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.search-icon {
+  color: #0cbd91;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 3px;
+}
+
+.h-search-bar {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #0cbd91;
+  border-radius: 4px;
+  max-width: 500px;
+  /* Limita o tamanho máximo da barra de pesquisa */
+}
+
+.search-results {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 85%;
+  background-color: rgb(187, 190, 189);
+  border: 1px solid #ddd;
+  width: 250px;
+  z-index: 1000;
+}
+
+.search-results li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-results li:hover {
+  background-color: #b1b3b2;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #00796B; /* Cor de fundo do círculo */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.user-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333; /* Cor do nome do usuário */
+  padding: 5px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  right: -50%;
+  bottom: 10;
+  background-color: #ccc;
+  color: #000000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  width: 170px;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(10px);
+  height: 13vh;
+  transition: width 0.3s;
+  z-index: 20;
+}
+
+
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  /* Ajusta a posição da seta */
+  right: 120px;
+  /* Ajusta a posição horizontal da seta */
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #ccc transparent;
+  /* Cria a seta para cima */
+}
+
+.dropdown-username {
+  font-size: 16px;
+  color: #000000;
+  padding: 10px 20px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+  /* Linha separadora */
+  width: 100%;
+}
+
+.dropdown-menu .logout-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  text-align: left;
+  transition: background-color 0.3s;
+  border-radius: 4px;
+  position: relative;
+  left: 2%;
+}
+
+.dropdown-menu .option-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  color: #111111;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  text-align: left;
+  transition: background-color 0.3s;
+  border-radius: 4px;
+}
+
+.dropdown-menu .logout-button:hover {
+  background-color: #f8f9fa;
+}
+
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 10px;
+    position: relative;
+    left: -9%;
+    top: -4%;
+    margin-right: -50px;
+  }
+
+  .header-left {
+    justify-content: space-between;
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .menu-icon {
+    display: none;
+    /* Ícone aparece no mobile */
+  }
+
+  .h-search-bar {
+    width: 100%;
+    /* Faz o campo de pesquisa ocupar toda a largura disponível */
+    padding: 10px;
+    border-radius: 0;
+    border: 1px solid #0cbd91;
+    margin: 0;
+  }
+
+  .header-right {
+    position: absolute;
+    right: 10px;
+  }
+
+  .user-icon {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    right: -70%;
+  }
+
+  /* Estilos para o overlay que cobre o conteúdo */
+  .dropdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Sombra semi-transparente */
+    z-index: 20;
+    /* Certifique-se de que está abaixo do dropdown */
+  }
+
+  .dropdown-menu {
+    width: 270%;
+    height: 60vh;
+    right: 1;
+    top: 50px;
+    transition: width 0.3s;
+    /* Ajusta a posição para não sobrepor o conteúdo */
+  }
+
+  .dropdown-menu::before {
+    right: 10px;
+    /* Ajusta a posição da seta no mobile */
+  }
+
+}
+
+/* Sidebar expanded/collapsed adjustment */
+.sidebar-expanded .search-bar,
+.sidebar-collapsed .search-bar {
+  width: calc(100% - 50px);
+  /* Ajusta a largura do campo de pesquisa conforme a sidebar */
+  transition: width 0.3s;
+}
+
+.sidebar-expanded .user-icon,
+.sidebar-collapsed .user-icon {
+  right: 10px;
+  /* Posiciona o ícone na borda direita conforme o estado da sidebar */
+  transition: right 0.3s;
+}

@@ -1,0 +1,258 @@
+.contrato-form-container {
+    display: flex;
+    width: 100%;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.ctr-main-content {
+    width: 67%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+    margin-left: 50px;
+    margin-top: 20px;
+    height: 97vh;
+}
+
+.contrato-info-bar {
+    width: 25%;
+    background: linear-gradient(135deg, #037C74, #65C1C2);
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.input-descricao {
+    width: 100%; /* Ocupa 100% da largura do contêiner */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: inherit; /* Usa a mesma fonte do restante do formulário */
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+.contrato-info-bar h3,
+.ctr-main-content h2 {
+    margin-top: 0;
+}
+
+.ctr-contrato-form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.ctr-contrato-form-container h2{
+    text-align: left;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.ctr-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.ctr-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.ctr-form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.ctr-form-group input,
+.ctr-form-group select,
+.ctr-form-group textarea {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.ctr-form-section {
+    display: flex;
+    flex-direction: column; /* Organiza os elementos em coluna */
+    margin-bottom: 20px; 
+}
+/* Centralizar o título "Conta a pagar" abaixo dos selects */
+.ctr-form-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Alinhar os campos "Fornecedor", "Valor da Parcela" e "Periodicidade de Vencimento" em uma linha */
+.ctr-form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Espaçamento entre os campos */
+    margin-bottom: 20px; /* Espaçamento abaixo da linha */
+}
+
+/* Estilo para garantir que todos os campos fiquem na mesma altura */
+.ctr-form-group {
+    flex: 1;
+}
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-close-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-close-btn:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* Estilo específico para o input de "Valor da Parcela" */
+.ctr-form-group input[type="text"],
+.ctr-form-group select {
+    width: 100%;
+}
+
+/* Ajustar o margin e padding dos h3 */
+.ctr-form-section h3 {
+    margin: 0;
+    padding: 10px 0;
+}
+
+/* Alinhar os labels acima dos campos */
+.ctr-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.9em;
+}
+
+/* Ajustes adicionais se necessário */
+.ctr-form-row .ctr-form-group:not(:last-child) {
+    margin-right: 20px; /* Espaçamento entre os grupos de formulário */
+}
+
+.ctr-form-group button{
+    background-color: #009C95 !important;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9em;
+}
+
+/* Estilização dos botões */
+.ctr-btn-primary {
+    background-color: #009C95 !important;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9em;
+}
+
+.ctr-btn-primary:hover {
+    background-color: #01726c !important; 
+}
+
+.projecao-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.projecao-table th, .projecao-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.projecao-table thead tr {
+    background-color: #f2f2f2;
+}
+
+.projecao-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.projecao-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.modal-close-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #a13333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.modal-close-btn:hover {
+    background-color: #702727;
+}
+
+
+.modal-confirm-btn {
+    margin-top: 20px;
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #1da789;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.modal-confirm-btn:hover {
+    background-color: #087e64;
+}

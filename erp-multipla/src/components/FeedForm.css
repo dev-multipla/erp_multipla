@@ -1,0 +1,13 @@
+.test-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh; /* O componente ocupará 70% da altura da tela */
+    width: 100%; /* O componente ocupará 100% da largura */
+  }
+
+  .logo-home{
+    max-width: 100%; /* O logo pode ocupar até 100% da largura disponível */
+    max-height: 100%; /* O logo pode ocupar até 100% da altura do componente */
+    object-fit: contain; /* Mantém a proporção da imagem dentro do espaço */
+  }

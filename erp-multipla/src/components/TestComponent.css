@@ -1,0 +1,22 @@
+.test-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh; /* O componente ocupará 70% da altura da tela */
+  width: 100%; /* O componente ocupará 100% da largura */
+  background-color: rgba(255, 255, 255, 0.8); /* Fundo branco com 80% de opacidade */
+  position: relative; /* Cria um contexto para posicionar o logo */
+  z-index: 10; /* Mantém o componente no topo */
+}
+
+.logo-home {
+  position: absolute; /* Remove o logo do fluxo normal do documento */
+  top: 50%; /* Posiciona no meio vertical */
+  left: 50%; /* Posiciona no meio horizontal */
+  transform: translate(-50%, -50%); /* Centraliza o logo */
+  max-width: 100%; /* O logo pode ocupar até 100% da largura disponível */
+  max-height: 100%; /* O logo pode ocupar até 100% da altura do componente */
+  object-fit: contain; /* Mantém a proporção da imagem dentro do espaço */
+  z-index: 5; /* Define o logo abaixo da camada branca */
+  opacity: 0.2; /* Torna o logo um pouco mais opaco */
+}

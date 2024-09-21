@@ -1,0 +1,41 @@
+import React from 'react';
+import './FeedForm.css'; // Certifique-se de criar este arquivo CSS para estilizar os cards
+
+function FeedForm() {
+  return (
+    <div className="feed-form">
+      <h2>Últimas Atualizações</h2>
+
+      <div className="cards-row"> {/* Novo container para os 4 primeiros cards */}
+      <div className="card">
+        <h3>Novo Contrato Cadastrado</h3>
+        <p>Empresa: XYZ Ltda.</p>
+        <p>Valor: R$ 50.000,00</p>
+        <p>Data de Início: 01/08/2024</p>
+      </div>
+      <div className="card">
+        <h3>Projeto Aprovado</h3>
+        <p>Nome do Projeto: Desenvolvimento de Aplicativo</p>
+        <p>Cliente: ABC Inc.</p>
+        <p>Status: Em Andamento</p>
+      </div>
+      <div className="card">
+        <h3>Pagamento Recebido</h3>
+        <p>Cliente: DEF S.A.</p>
+        <p>Valor: R$ 10.000,00</p>
+        <p>Data de Recebimento: 30/07/2024</p>
+      </div>
+
+      </div>
+
+      <div className="card">
+        <h3>Pagamento Recebido</h3>
+        <p>Cliente: DEF S.A.</p>
+        <p>Valor: R$ 10.000,00</p>
+        <p>Data de Recebimento: 30/07/2024</p>
+      </div>
+    </div>
+  );
+}
+
+export default FeedForm;
