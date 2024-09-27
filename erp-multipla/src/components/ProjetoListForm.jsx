@@ -4,6 +4,7 @@ import { BounceLoader } from 'react-spinners';
 import Sidebar from './SideBar';
 import './ProjetoListForm.css'; // Importa o CSS específico para ProjectsList
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate para redirecionamento
+import { GrEdit } from "react-icons/gr";
 
 const ProjectList = () => {
   const [projects, setProjects] = useState([]);
@@ -135,6 +136,7 @@ const ProjectList = () => {
                 <th>Data de Início</th>
                 <th>Data de Fim</th>
                 <th>Status</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -152,6 +154,11 @@ const ProjectList = () => {
                   <td>{project.data_inicio}</td>
                   <td>{project.data_termino}</td>
                   <td>{project.status}</td>
+                  <td>
+        <button className="button-custom-edit" onClick={() => navigate(`/editar-projeto/${project.id}`)}>
+          <GrEdit /> Editar
+        </button>
+      </td>
                 </tr>
               ))}
             </tbody>

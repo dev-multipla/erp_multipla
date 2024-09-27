@@ -1,4 +1,4 @@
-// ContractsList.js
+// ClientList.js
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -6,7 +6,7 @@ import { BounceLoader } from 'react-spinners';
 import Sidebar from './SideBar';
 import './ClienteListForm.css'; // Importa o CSS específico para ContractsList
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate para redirecionamento
-import { GrAdd, GrTrash } from "react-icons/gr"; // Importa o ícone de lixeira
+import { GrAdd, GrEdit, GrTrash } from "react-icons/gr"; // Importa o ícone de lixeira
 
 const ClienteListForm = () => {
   const [contracts, setContracts] = useState([]);
@@ -111,9 +111,14 @@ const ClienteListForm = () => {
           <button className="add-button" onClick={handleButtonClick}>
             <GrAdd /> Incluir Fornecedor
           </button>
-          <button className="delete-button" onClick={handleDeleteClients} disabled={selectedClients.length === 0}>
+
+          {/* Mostrar o botão de excluir apenas quando houver clientes selecionados */}
+        {selectedClients.length > 0 && (
+          <button className="delete-button" onClick={handleDeleteClients}>
             <GrTrash /> Excluir Selecionados
           </button>
+        )}
+
         </div>
         <h1>Clientes Associados</h1>
         {contracts.length > 0 ? (
@@ -125,25 +130,31 @@ const ClienteListForm = () => {
                 <th>CPF/CNPJ</th>
                 <th>Telefone</th>
                 <th>Email</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              {contracts.map(cliente => (
-                <tr key={cliente.id}>
-                  <td>
-                    <input
-                      type="checkbox"
-                      checked={selectedClients.includes(cliente.id)}
-                      onChange={() => handleSelectClient(cliente.id)}
-                    />
-                  </td>
-                  <td>{cliente.nome}</td>
-                  <td>{cliente.cpf_cnpj}</td>
-                  <td>{cliente.telefone}</td>
-                  <td>{cliente.email}</td>
-                </tr>
-              ))}
-            </tbody>
+  {contracts.map(cliente => (
+    <tr key={cliente.id}>
+      <td>
+        <input
+          type="checkbox"
+          checked={selectedClients.includes(cliente.id)}
+          onChange={() => handleSelectClient(cliente.id)}
+        />
+      </td>
+      <td>{cliente.nome}</td>
+      <td>{cliente.cpf_cnpj}</td>
+      <td>{cliente.telefone}</td>
+      <td>{cliente.email}</td>
+      <td>
+        <button className="button-custom-edit" onClick={() => navigate(`/editar-cliente/${cliente.id}`)}>
+          <GrEdit /> Editar
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
           </table>
         ) : (
           <p>Nenhum contrato encontrado.</p>

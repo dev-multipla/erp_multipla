@@ -60,6 +60,17 @@ const ContractsList = () => {
     });
   };
 
+  const getContractType = (contract) => {
+  switch (contract.tipo) {
+    case 'cliente':
+      return 'Cliente';
+    case 'fornecedor':
+      return 'Fornecedor';
+    default:
+      return 'Desconhecido';
+  }
+};
+
   // Função para excluir (soft-delete) os contratos selecionados
   const handleDelete = async () => {
     try {
@@ -138,6 +149,8 @@ const ContractsList = () => {
                 <th>Descrição</th>
                 <th>Data de Início</th>
                 <th>Data de Fim</th>
+                <th>Tipo</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -149,11 +162,18 @@ const ContractsList = () => {
                       checked={selectedContracts.includes(contract.id)}
                       onChange={() => handleCheckboxChange(contract.id)}
                     />
+
                   </td>
                   <td>{contract.numero}</td>
                   <td>{contract.descricao}</td>
                   <td>{contract.data_inicio}</td>
                   <td>{contract.data_termino}</td>
+                  <td>{getContractType(contract)}</td>
+                  <td>
+                    <button className="button-custom-edit" onClick={() => navigate(`/editar-contrato/${contract.id}`)}>
+                      Editar
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

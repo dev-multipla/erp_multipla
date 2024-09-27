@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../AuthContext';
+import { useParams } from 'react-router-dom'; // Para obter o ID do projeto da URL
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './ProjetoForm.css';
@@ -9,6 +10,7 @@ import Header from './Header';
 
 const ProjetoForm = () => {
     const { token } = useAuth();
+    const { id } = useParams(); // Obtém o ID do projeto da URL
     const [formData, setFormData] = useState({
         nome: '',
         descricao: '',
@@ -16,6 +18,22 @@ const ProjetoForm = () => {
         data_termino: '',
         status: ''
     });
+
+    useEffect(() => {
+        if (id) {
+            // Se houver um ID, estamos em modo de edição
+            axios.get(`http://127.0.0.1:8000/api/projetos/${id}/`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }).then(response => {
+                setFormData(response.data);
+            }).catch(error => {
+                console.error('Erro ao carregar dados do projeto', error);
+                toast.error('Erro ao carregar dados do projeto');
+            });
+        }
+    }, [id, token]);
 
     const handleChange = (e) => {
         setFormData({
@@ -27,13 +45,19 @@ const ProjetoForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        axios.post('http://127.0.0.1:8000/api/projetos/', formData, {
+        const url = id ? `http://127.0.0.1:8000/api/projetos/${id}/` : 'http://127.0.0.1:8000/api/projetos/';
+        const method = id ? 'put' : 'post';
+
+        axios({
+            method: method,
+            url: url,
+            data: formData,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         }).then(response => {
-            toast.success('Projeto cadastrado com sucesso!', { position: "top-right" });  // Exibir notificação de sucesso
+            toast.success(id ? 'Projeto atualizado com sucesso!' : 'Projeto cadastrado com sucesso!', { position: "top-right" });
             setFormData({
                 nome: '',
                 descricao: '',
@@ -42,14 +66,14 @@ const ProjetoForm = () => {
                 status: ''
             });
         }).catch(error => {
-            console.error('Erro ao cadastrar projeto', error);
+            console.error('Erro ao cadastrar/atualizar projeto', error);
             if (error.response && error.response.data) {
                 const errorData = error.response.data;
                 Object.keys(errorData).forEach(key => {
                     toast.error(`Erro: ${errorData[key].join(', ')}`);
                 });
             } else {
-                toast.error('Erro ao cadastrar projeto. Tente novamente!', { position: "top-right" });  // Exibir notificação de erro
+                toast.error('Erro ao cadastrar/atualizar projeto. Tente novamente!', { position: "top-right" });
             }
         });
     };
@@ -61,7 +85,7 @@ const ProjetoForm = () => {
             
             <main className="p-main-content">
                 <div className="p-projeto-form-container">
-                    <h2>Cadastro de Projeto</h2>
+                    <h2>{id ? 'Editar Projeto' : 'Cadastro de Projeto'}</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="p-form-row">
                             <div className="p-form-group">
@@ -124,7 +148,7 @@ const ProjetoForm = () => {
                             </div>
                         </div>
                         <div className="p-form-actions">
-                            <button type="submit" className="p-btn-primary">Cadastrar Projeto</button>
+                            <button type="submit" className="p-btn-primary">{id ? 'Atualizar Projeto' : 'Cadastrar Projeto'}</button>
                             <button type="reset" className="p-btn-secondary" onClick={() => setFormData({
                                 nome: '',
                                 descricao: '',

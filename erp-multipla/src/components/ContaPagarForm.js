@@ -25,8 +25,12 @@ function ContaPagarForm() {
 
     // Estados para os valores dos cartões de resumo
     const [totalContas, setTotalContas] = useState(0);
-    const [proximoVencimento, setProximoVencimento] = useState('');
     const [contasPendentes, setContasPendentes] = useState(0);
+    const [proximoVencimento, setProximoVencimento] = useState(''); // Estado para armazenar o próximo vencimento
+    const [totalContasPagas, setTotalContasPagas] = useState(null);
+    const [loadingTotalContasPagas, setLoadingTotalContasPagas] = useState(true);
+    const [totalContasPendentes, setTotalContasPendentes] = useState(null);
+    const [loadingTotalContasPendentes, setLoadingTotalContasPendentes] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -66,11 +70,153 @@ function ContaPagarForm() {
 
         fetchData();
     }, []);
+    
+     useEffect(() => {
+        // Chama a API de projeções de vencimento e obtém a data mais próxima
+        const fetchProjecoesPagar = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    setError('Token não encontrado.');
+                    return;
+                }
 
+                const headers = {
+                    Authorization: `Bearer ${token}`,
+                };
+
+                const response = await axios.get('http://127.0.0.1:8000/api/contratos/projecoes_pagar/', { headers });
+                const projecoes = response.data;
+
+                // Obter a data atual
+                const dataAtual = new Date();
+
+                // Filtrar as projeções que possuem datas futuras e encontrar a mais próxima
+                const proximasDatas = projecoes
+                    .map(projecao => new Date(projecao.data_vencimento))
+                    .filter(data => data > dataAtual)
+                    .sort((a, b) => a - b);
+
+                // Se houver uma data mais próxima, atualizar o estado
+                if (proximasDatas.length > 0) {
+                    setProximoVencimento(proximasDatas[0].toLocaleDateString('pt-BR'));
+                } else {
+                    setProximoVencimento('Nenhum vencimento próximo');
+                }
+            } catch (error) {
+                setError('Erro ao buscar projeções de vencimento.');
+                console.error(error);
+            }
+        };
+
+        fetchProjecoesPagar();
+    }, []); // Executa apenas uma vez, ao carregar o componente
+    
     useEffect(() => {
         const total = formData.projetos.reduce((acc, projeto) => acc + parseFloat(projeto.valor || 0), 0);
         setFormData(prevFormData => ({ ...prevFormData, valor_total: total }));
     }, [formData.projetos]);
+    
+    //aplicação de cards
+    useEffect(() => {
+        // Atualizar valor total quando os projetos mudam
+        const total = formData.projetos.reduce((acc, projeto) => acc + parseFloat(projeto.valor || 0), 0);
+        setFormData(prevFormData => ({ ...prevFormData, valor_total: total }));
+    }, [formData.projetos]);
+
+
+    useEffect(() => {
+      const fetchTotalContasPagas = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          if (!token) {
+            setError('Token não encontrado.');
+            return;
+          }
+
+          const headers = {
+            Authorization: `Bearer ${token}`,
+          };
+
+          const response = await axios.get('http://localhost:8000/api/contas-a-pagar/total-pagas-ano', { headers });
+          const total = response.data.total_pagas_ano;
+
+          if (total === undefined) {
+            setError('Erro ao buscar total de contas recebidas.');
+            return;
+          }
+
+          setTotalContasPagas(total);
+          setLoadingTotalContasPagas(false);
+        } catch (error) {
+          setError('Erro ao buscar total de contas recebidas.');
+          console.error(error);
+          setLoadingTotalContasPagas(false);
+        }
+      };
+
+      fetchTotalContasPagas();
+    }, []);
+
+    useEffect(() => {
+
+      const fetchTotalContasPendentes = async () => {
+
+        try {
+
+          const token = localStorage.getItem('token');
+
+          if (!token) {
+
+            setError('Token não encontrado.');
+
+            return;
+
+          }
+
+
+          const headers = {
+
+            Authorization: `Bearer ${token}`,
+
+          };
+
+
+          const response = await axios.get('http://localhost:8000/api/contas-a-pagar/total_faturamento_pagar/', { headers });
+
+          const total = response.data.total_faturamento_pagar;
+
+
+          if (total === undefined) {
+
+            setError('Erro ao buscar total de contas pendentes.');
+
+            return;
+
+          }
+
+
+          setTotalContasPendentes(total);
+
+          setLoadingTotalContasPendentes(false);
+
+        } catch (error) {
+
+          setError('Erro ao buscar total de contas pendentes.');
+
+          console.error(error);
+
+          setLoadingTotalContasPendentes(false);
+
+        }
+
+      };
+
+
+      fetchTotalContasPendentes();
+
+    }, []);
+    //finalizacão de cards
 
     const handleChange = async (event) => {
         const { name, value } = event.target;
@@ -215,17 +361,47 @@ function ContaPagarForm() {
                 </div>
 
                 <div className="summary">
-                    <div className="meu-card">
-                        <h3>Total de Contas</h3>
-                        <p>{totalContas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-                    </div>
+                     <div className="meu-card">
+
+                        <h3>Total de Contas pagas</h3>
+
+                        {loadingTotalContasPagas ? (
+
+                          <p>Carregando...</p>
+
+                        ) : totalContasPagas !== null ? (
+
+                          <p> {totalContasPagas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+
+                        ) : (
+
+                          <p>Nenhum valor encontrado</p>
+
+                        )}
+
+                      </div>
                     <div className="meu-card">
                         <h3>Próximo Vencimento</h3>
                         <p>{proximoVencimento}</p>
                     </div>
                     <div className="meu-card">
-                        <h3>Contas Pendentes</h3>
-                        <p>{contasPendentes.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+
+                      <h3>Contas Pendentes</h3>
+
+                      {loadingTotalContasPendentes ? (
+
+                        <p>Carregando...</p>
+
+                      ) : totalContasPendentes !== null ? (
+
+                        <p> {totalContasPendentes.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+
+                      ) : (
+
+                        <p>Nenhum valor encontrado</p>
+
+                      )}
+
                     </div>
                 </div>
 

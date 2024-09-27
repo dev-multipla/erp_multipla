@@ -28,7 +28,7 @@
 .sidebar-container ul li {
   margin-bottom: 10px;
 
-  .toggle-button-container {
+.toggle-button-container {
     position: absolute;
     top: 20px;
     right: 10px;
@@ -56,7 +56,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .menu-item span {
@@ -92,6 +92,7 @@
 }
 
 .submenu ul li {
+  padding-top: 5px;
   margin-bottom: 5px;
 }
 

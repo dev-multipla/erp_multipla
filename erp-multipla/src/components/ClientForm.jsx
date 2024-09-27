@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../AuthContext';
+import { useParams } from 'react-router-dom'; // Para obter o ID do cliente da URL
 import './ClientForm.css';
 import SideBar from './SideBar';
 import Header from './Header';
@@ -11,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ProjetoForm = () => {
     const { token } = useAuth();
+    const { id } = useParams(); // Obtém o ID do cliente da URL
     const [formData, setFormData] = useState({
         nome: '',
         cpf_cnpj: '',
@@ -21,6 +23,22 @@ const ProjetoForm = () => {
         telefone: '',
         email: ''
     });
+
+    useEffect(() => {
+        if (id) {
+            // Se houver um ID, estamos em modo de edição
+            axios.get(`http://127.0.0.1:8000/api/clientes/${id}/`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }).then(response => {
+                setFormData(response.data);
+            }).catch(error => {
+                console.error('Erro ao carregar dados do cliente', error);
+                toast.error('Erro ao carregar dados do cliente');
+            });
+        }
+    }, [id, token]);
 
     const handleChange = (e) => {
         setFormData({
@@ -38,13 +56,19 @@ const ProjetoForm = () => {
             return;
         }
 
-        axios.post('http://127.0.0.1:8000/api/clientes/', formData, {
+        const url = id ? `http://127.0.0.1:8000/api/clientes/${id}/` : 'http://127.0.0.1:8000/api/clientes/';
+        const method = id ? 'put' : 'post';
+
+        axios({
+            method: method,
+            url: url,
+            data: formData,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         }).then(response => {
-            toast.success('Novo cliente cadastrado com sucesso!');
+            toast.success(id ? 'Cliente atualizado com sucesso!' : 'Novo cliente cadastrado com sucesso!');
             setFormData({
                 nome: '',
                 cpf_cnpj: '',
@@ -56,7 +80,7 @@ const ProjetoForm = () => {
                 email: ''
             });
         }).catch(error => {
-            console.error('Erro ao cadastrar projeto', error);
+            console.error('Erro ao cadastrar/atualizar cliente', error);
             if (error.response && error.response.data) {
                 const errorData = error.response.data;
                 if (errorData.cpf_cnpj) {
@@ -66,7 +90,7 @@ const ProjetoForm = () => {
                     toast.error(`Erro: ${errorData.email.join(', ')}`);
                 }
             } else {
-                toast.error('Erro ao cadastrar projeto');
+                toast.error('Erro ao cadastrar/atualizar cliente');
             }
         });
     };
@@ -76,7 +100,7 @@ const ProjetoForm = () => {
             <SideBar />
             <main className="c-main-content">
                 <div className="c-cliente-form-container">
-                    <h2>Cadastro de Cliente</h2>
+                    <h2>{id ? 'Editar Cliente' : 'Cadastro de Cliente'}</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="c-form-row">
                             <div className="c-form-group">
@@ -106,7 +130,6 @@ const ProjetoForm = () => {
                             <div className="c-form-group">
                                 <label>Endereço:</label>
                                 <input
-                                
                                     type="endereco"
                                     name="endereco"
                                     className="input-grande"
@@ -205,6 +228,7 @@ const ProjetoForm = () => {
                                 required
                             />
                         </div>
+                        
                         <div className="c-form-actions">
                             <button type="submit" className="c-btn-primary">Cadastrar Cliente</button>
                             <button type="reset" className="c-btn-secondary" onClick={() => setFormData({

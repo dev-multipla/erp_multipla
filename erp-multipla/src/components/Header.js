@@ -8,11 +8,11 @@ import { useNavigate } from 'react-router-dom'; // Para navegação
 function Header({ pageTitle }) {
     const { isLoggedIn, userName, logout } = useAuth();
     const [dropdownVisible, setDropdownVisible] = useState(false);
-    const [currentUserName, setCurrentUserName] = useState('');
+    const [currentUserName, setCurrentUserName] = useState(localStorage.getItem('userName') || '');
     const [searchTerm, setSearchTerm] = useState(''); // Estado para o termo de busca
     const [filteredRoutes, setFilteredRoutes] = useState([]); // Estado para rotas filtradas
     const navigate = useNavigate(); // Hook para navegar entre rotas
-
+    
     const routes = [
         { name: 'Contas a Pagar', path: '/contas-pagar' },
         { name: 'Contas a Receber', path: '/contas-receber' },
@@ -34,6 +34,7 @@ function Header({ pageTitle }) {
     useEffect(() => {
         if (userName) {
             setCurrentUserName(userName);
+            localStorage.setItem('userName', userName);
         }
     }, [userName]);
 
@@ -60,6 +61,7 @@ function Header({ pageTitle }) {
     const handleLogout = () => {
         logout();
         setDropdownVisible(false);
+        localStorage.removeItem('userName');
     };
 
     const handleSearchChange = (event) => {

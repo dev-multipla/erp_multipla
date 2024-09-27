@@ -6,7 +6,7 @@ import { BounceLoader } from 'react-spinners';
 import Sidebar from './SideBar';
 import './FornecedorListForm.css'; // Importa o CSS específico para ContractsList
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate para redirecionamento
-import { GrAdd, GrTrash } from "react-icons/gr"; // Ícones para os botões
+import { GrAdd, GrTrash, GrEdit } from "react-icons/gr"; // Ícones para os botões
 
 const FornecedorListForm = () => {
   const [contracts, setContracts] = useState([]);
@@ -110,13 +110,13 @@ const FornecedorListForm = () => {
           <button className="add-button" onClick={handleButtonClick}>
             <GrAdd /> Incluir Fornecedor
           </button>
-          <button
-            className="delete-button"
-            onClick={handleDeleteFornecedores}
-            disabled={selectedFornecedores.length === 0}
-          >
+           {/* Mostrar o botão de excluir apenas quando houver fornecedores selecionados */}
+        {selectedFornecedores.length > 0 && (
+          <button className="delete-button" onClick={handleDeleteFornecedores}>
             <GrTrash /> Excluir Selecionados
           </button>
+        )}
+
         </div>
         <h1>Fornecedores Associados</h1>
         {contracts.length > 0 ? (
@@ -128,25 +128,31 @@ const FornecedorListForm = () => {
                 <th>CPF/CNPJ</th>
                 <th>Telefone</th>
                 <th>Email</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              {contracts.map(fornecedor => (
-                <tr key={fornecedor.id}>
-                  <td>
-                    <input
-                      type="checkbox"
-                      checked={selectedFornecedores.includes(fornecedor.id)}
-                      onChange={() => handleSelectFornecedor(fornecedor.id)}
-                    />
-                  </td>
-                  <td>{fornecedor.nome}</td>
-                  <td>{fornecedor.cpf_cnpj}</td>
-                  <td>{fornecedor.telefone}</td>
-                  <td>{fornecedor.email}</td>
-                </tr>
-              ))}
-            </tbody>
+  {contracts.map(fornecedor => (
+    <tr key={fornecedor.id}>
+      <td>
+        <input
+          type="checkbox"
+          checked={selectedFornecedores.includes(fornecedor.id)}
+          onChange={() => handleSelectFornecedor(fornecedor.id)}
+        />
+      </td>
+      <td>{fornecedor.nome}</td>
+      <td>{fornecedor.cpf_cnpj}</td>
+      <td>{fornecedor.telefone}</td>
+      <td>{fornecedor.email}</td>
+      <td>
+        <button className="button-custom-edit" onClick={() => navigate(`/editar-fornecedor/${fornecedor.id}`)}>
+          <GrEdit /> Editar
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
           </table>
         ) : (
           <p>Nenhum fornecedor encontrado.</p>

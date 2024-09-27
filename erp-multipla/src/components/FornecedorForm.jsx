@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../AuthContext';
+import { useParams } from 'react-router-dom'; // Para obter o ID do fornecedor da URL
 import './FornecedorForm.css';
 import SideBar from './SideBar';
 import InputMask from 'react-input-mask';
@@ -9,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const FornecedorForm = () => {
     const { token } = useAuth();
+    const { id } = useParams(); // Obtém o ID do fornecedor da URL
     const [formData, setFormData] = useState({
         nome: '',
         cpf_cnpj: '',
@@ -20,6 +22,22 @@ const FornecedorForm = () => {
         email: ''
     });
 
+    useEffect(() => {
+        if (id) {
+            // Se houver um ID, estamos em modo de edição
+            axios.get(`http://127.0.0.1:8000/api/fornecedores/${id}/`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }).then(response => {
+                setFormData(response.data);
+            }).catch(error => {
+                console.error('Erro ao carregar dados do fornecedor', error);
+                toast.error('Erro ao carregar dados do fornecedor');
+            });
+        }
+    }, [id, token]);
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -30,13 +48,19 @@ const FornecedorForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        axios.post('http://127.0.0.1:8000/api/fornecedores/', formData, {
+        const url = id ? `http://127.0.0.1:8000/api/fornecedores/${id}/` : 'http://127.0.0.1:8000/api/fornecedores/';
+        const method = id ? 'put' : 'post';
+
+        axios({
+            method: method,
+            url: url,
+            data: formData,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         }).then(response => {
-            toast.success('Fornecedor cadastrado com sucesso!', { position: "top-right" });
+            toast.success(id ? 'Fornecedor atualizado com sucesso!' : 'Fornecedor cadastrado com sucesso!', { position: "top-right" });
             setFormData({
                 nome: '',
                 cpf_cnpj: '',
@@ -48,7 +72,7 @@ const FornecedorForm = () => {
                 email: ''
             });
         }).catch(error => {
-            console.error('Erro ao cadastrar fornecedor', error);
+            console.error('Erro ao cadastrar/atualizar fornecedor', error);
             if (error.response && error.response.data) {
                 const errorData = error.response.data;
                 if (errorData.cpf_cnpj) {
@@ -58,7 +82,7 @@ const FornecedorForm = () => {
                     toast.error(`Erro: ${errorData.email.join(', ')}`);
                 }
             } else {
-                toast.error('Erro ao cadastrar fornecedor. Tente novamente!', { position: "top-right" });
+                toast.error('Erro ao cadastrar/atualizar fornecedor. Tente novamente!', { position: "top-right" });
             }
         });
     };
@@ -69,7 +93,7 @@ const FornecedorForm = () => {
             <SideBar />
             <main className="for-main-content">
                 <div className="right-panel">
-                    <h2>Cadastro de Fornecedor</h2>
+                    <h2>{id ? 'Editar Fornecedor' : 'Cadastro de Fornecedor'}</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="form-row">
                             <div className="form-group">

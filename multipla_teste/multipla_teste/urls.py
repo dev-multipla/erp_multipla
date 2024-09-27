@@ -9,7 +9,7 @@ from pagamentos.views import FormaPagamentoViewSet, FormaPagamentoSelectViewSet,
 from contas_pagar import views
 from contas_pagar.views import ContaAPagarViewSet, ContaAReceberViewSet
 from .views import UserCreate, LogoutView
-from usuarios.views import UserCreate, LogoutView
+from usuarios.views import UserCreate, LogoutView, login_view 
 from empresas.views import EmpresaViewSet, FilialViewSet, EmpresaListViewSet, FilialListViewSet
 from contratos import views as contratos_views
 
@@ -17,6 +17,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+
 
 router = routers.DefaultRouter()
 router.register(r'fornecedores', FornecedorViewSet)
@@ -46,13 +47,16 @@ router.register(r'formas-pagamento', FormaPagamentoViewSet, basename='formas-pag
 router.register(r'contas/contapagar/ultima-conta/', ContaAPagarViewSet, basename='contas/contapagar/ultima-conta/' )
 router.register(r'contas-receber/ultima-conta', views.ContaAReceberViewSet, basename='contas-receber-ultima-conta')
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),  # Utiliza apenas o router principal
+    path('api/', include(router.urls)),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/register/', UserCreate.as_view(), name='user-create'),
+    path('api/register/', UserCreate.as_view(), name='user-create'),  # Sem necessidade de decorador
     path('api/logout/', LogoutView.as_view(), name='logout'),
+    path('login/', login_view, name='login'), 
     path('api/contas-a-pagar/total/', views.TotalContasAPagarView.as_view(), name='total-contas-a-pagar'),
     path('api/contas-a-pagar/proximos-vencimentos/', views.ProximosVencimentosView.as_view(), name='proximos-vencimentos'),
     path('api/contas-a-pagar/contas_pendentes/', views.ContaAPagarViewSet.as_view({'get': 'contas_pendentes'}), name='contas-a-pagar-pendentes'),
@@ -62,4 +66,8 @@ urlpatterns = [
     path('api/contratos/<int:pk>/soft_delete/', ContratoViewSet.as_view({'delete': 'soft_delete'}), name='contrato-soft-delete'),
     path('api/contratos/projecoes/', ContratoViewSet.as_view({'post': 'gerar_projecoes'}), name='gerar-projecoes'),
     #path('api/contratos/salvar/', ContratoViewSet.as_view({'post': 'salvar_contrato'}), name='salvar-contrato'),
+    path('api/contas-a-pagar/total-pagas-ano/', views.ContaAPagarViewSet.as_view({'get': 'total_pagas_ano'}), name='total-pagas-ano'),
+    path('api/contas-a-receber/total-recebidas-ano/', views.ContaAReceberViewSet.as_view({'get': 'total_recebidas_ano'}), name='total-recebidas-ano'),
+    path('api/contas-a-pagar/total_faturamento_pagar/', views.ContaAPagarViewSet.as_view({'get': 'total_faturamento_pagar'}), name='total_faturamento_pagar'),
+    path('api/contas-a-receber/total_faturamento_receber/', views.ContaAReceberViewSet.as_view({'get': 'total_faturamento_receber'}), name='total_faturamento_receber'),
 ]

@@ -24,6 +24,11 @@ function ContaReceberForm() {
     const [successMessage, setSuccessMessage] = useState('');
     const [showText, setShowText] = useState(false);
     const [proximoVencimento, setProximoVencimento] = useState(''); // Estado para armazenar o próximo vencimento
+    const [totalContasRecebidas, setTotalContasRecebidas] = useState(null);
+    const [loadingTotalContasRecebidas, setLoadingTotalContasRecebidas] = useState(true);
+    const [totalContasPendentes, setTotalContasPendentes] = useState(null);
+    const [loadingTotalContasPendentes, setLoadingTotalContasPendentes] = useState(true);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -103,6 +108,99 @@ function ContaReceberForm() {
         const total = formData.projetos.reduce((acc, projeto) => acc + parseFloat(projeto.valor || 0), 0);
         setFormData(prevFormData => ({ ...prevFormData, valor_total: total }));
     }, [formData.projetos]);
+
+
+    useEffect(() => {
+      const fetchTotalContasRecebidas = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          if (!token) {
+            setError('Token não encontrado.');
+            return;
+          }
+
+          const headers = {
+            Authorization: `Bearer ${token}`,
+          };
+
+          const response = await axios.get('http://localhost:8000/api/contas-a-receber/total-recebidas-ano', { headers });
+          const total = response.data.total_recebidas_ano;
+
+          if (total === undefined) {
+            setError('Erro ao buscar total de contas recebidas.');
+            return;
+          }
+
+          setTotalContasRecebidas(total);
+          setLoadingTotalContasRecebidas(false);
+        } catch (error) {
+          setError('Erro ao buscar total de contas recebidas.');
+          console.error(error);
+          setLoadingTotalContasRecebidas(false);
+        }
+      };
+
+      fetchTotalContasRecebidas();
+    }, []);
+
+    useEffect(() => {
+
+      const fetchTotalContasPendentes = async () => {
+
+        try {
+
+          const token = localStorage.getItem('token');
+
+          if (!token) {
+
+            setError('Token não encontrado.');
+
+            return;
+
+          }
+
+
+          const headers = {
+
+            Authorization: `Bearer ${token}`,
+
+          };
+
+
+          const response = await axios.get('http://localhost:8000/api/contas-a-receber/total_faturamento_receber/', { headers });
+
+          const total = response.data.total_faturamento_receber;
+
+
+          if (total === undefined) {
+
+            setError('Erro ao buscar total de contas pendentes.');
+
+            return;
+
+          }
+
+
+          setTotalContasPendentes(total);
+
+          setLoadingTotalContasPendentes(false);
+
+        } catch (error) {
+
+          setError('Erro ao buscar total de contas pendentes.');
+
+          console.error(error);
+
+          setLoadingTotalContasPendentes(false);
+
+        }
+
+      };
+
+
+      fetchTotalContasPendentes();
+
+    }, []);
 
     const handleChange = async (event) => {
         const { name, value } = event.target;
@@ -241,16 +339,46 @@ function ContaReceberForm() {
 
                 <div className="summary">
                     <div className="meu-card">
-                        <h3>Total de Contas</h3>
-                        <p>R$ 10,000</p>
-                    </div>
+
+                        <h3>Total de Contas Recebidas</h3>
+
+                        {loadingTotalContasRecebidas ? (
+
+                          <p>Carregando...</p>
+
+                        ) : totalContasRecebidas !== null ? (
+
+                          <p> {totalContasRecebidas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+
+                        ) : (
+
+                          <p>Nenhum valor encontrado</p>
+
+                        )}
+
+                      </div>
                     <div className="meu-card">
                         <h3>Próximo Vencimento</h3>
                         <p>{proximoVencimento}</p>
                     </div>
                     <div className="meu-card">
-                        <h3>Contas Pendentes</h3>
-                        <p>R$ 5,000</p>
+
+                      <h3>Contas Pendentes</h3>
+
+                      {loadingTotalContasPendentes ? (
+
+                        <p>Carregando...</p>
+
+                      ) : totalContasPendentes !== null ? (
+
+                        <p> {totalContasPendentes.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+
+                      ) : (
+
+                        <p>Nenhum valor encontrado</p>
+
+                      )}
+
                     </div>
                 </div>
 
@@ -337,7 +465,7 @@ function ContaReceberForm() {
                             <button type="button" onClick={() => removeProjeto(index)}>Remover</button>
                         </div>
                     ))}
-                    <button type="button" onClick={addProjeto}>Adicionar Projeto</button>
+                    <button type="button" className='add-project-btn' onClick={addProjeto}>Adicionar Projeto</button>
 
                     <div className="total-group">
                         <label>Valor Total:</label>
@@ -347,7 +475,7 @@ function ContaReceberForm() {
                     {error && <p className="error-message">{error}</p>}
                     {successMessage && <p className="success-message">{successMessage}</p>}
 
-                    <button type="submit" disabled={loading}>{loading ? 'Salvando...' : 'Salvar'}</button>
+                    <button type="submit" className='cp-submit-btn' disabled={loading}>{loading ? 'Salvando...' : 'Salvar'}</button>
                 </form>
             </div>
         </div>

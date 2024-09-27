@@ -11,13 +11,12 @@ from .models import ContaAPagar, ContaAReceber, ProjetoContaAPagar, ProjetoConta
 from .serializers import ContaAPagarSerializer, ContaAReceberSerializer, ContaPagarAvulsoSerializer, ContaReceberAvulsoSerializer
 import pandas as pd
 from datetime import date, timedelta, datetime
-
-
-
+from contratos.models import ProjecaoFaturamento
 
 class ContaAPagarViewSet(viewsets.ModelViewSet):
     queryset = ContaAPagar.objects.all().prefetch_related('projetos')  # Use prefetch_related para carregar os projetos
     serializer_class = ContaAPagarSerializer
+    
     @action(detail=False, methods=['get'], url_path='ultima-conta', url_name='ultima-conta')
     def get_last_conta_by_contrato(self, request):
         contrato_id = request.query_params.get('contrato_id')
@@ -52,6 +51,47 @@ class ContaAPagarViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(contas, many=True)
         return Response(serializer.data)
 
+    def perform_create(self, serializer):
+        conta = serializer.save()
+        
+        # Encontre a projeção de faturamento correspondente
+        projecao = ProjecaoFaturamento.objects.filter(
+            contrato=conta.contrato,
+            data_vencimento=conta.data_pagamento
+        ).first()
+
+        if projecao:
+            # Atualiza o status da projeção para 'pago'
+            projecao.pago = True
+            projecao.save()
+        
+    def perform_update(self, serializer):
+        conta = serializer.save()
+        
+        # Atualiza o status de 'pago' na projeção correspondente
+        projecao = ProjecaoFaturamento.objects.filter(
+            contrato=conta.contrato,
+            data_vencimento=conta.data_pagamento
+        ).first()
+        
+        if projecao:
+            projecao.pago = True
+            projecao.save()
+
+    @action(detail=False, methods=['get'], url_path='total-pagas-ano')
+    def total_pagas_ano(self, request):
+        ano_atual = date.today().year
+        total_pagas = ContaAPagar.objects.filter(data_pagamento__year=ano_atual).aggregate(total=Sum('valor_total'))['total']
+        return Response({'total_pagas_ano': total_pagas}) 
+
+    @action(detail=False, methods=['get'])
+    def total_faturamento_pagar(self, request):
+
+        parcelas = ProjecaoFaturamento.objects.filter(contrato__tipo='fornecedor', pago=False)
+
+        total = parcelas.aggregate(total=Sum('valor_parcela'))['total']
+
+        return Response({'total_faturamento_pagar': total})           
 
 class ContaAReceberViewSet(viewsets.ModelViewSet):
     queryset = ContaAReceber.objects.all()
@@ -90,6 +130,49 @@ class ContaAReceberViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(contas, many=True)
         return Response(serializer.data)
 
+
+    def perform_create(self, serializer):
+        conta = serializer.save()
+        
+        # Encontre a projeção de faturamento correspondente
+        projecao = ProjecaoFaturamento.objects.filter(
+            contrato=conta.contrato,
+            data_vencimento=conta.data_recebimento
+        ).first()
+        
+        if projecao:
+            # Atualiza o status da projeção para 'pago'
+            projecao.pago = True
+            projecao.save()
+    
+    def perform_update(self, serializer):
+        conta = serializer.save()
+        
+        # Atualiza o status de 'pago' na projeção correspondente
+        projecao = ProjecaoFaturamento.objects.filter(
+            contrato=conta.contrato,
+            data_vencimento=conta.data_recebimento
+        ).first()
+        
+        if projecao:
+            projecao.pago = True
+            projecao.save()
+
+    @action(detail=False, methods=['get'], url_path='total-recebidas-ano')
+    def total_recebidas_ano(self, request):
+        ano_atual = date.today().year
+        total_recebidas = ContaAReceber.objects.filter(data_recebimento__year=ano_atual).aggregate(total=Sum('valor_total'))['total']
+        return Response({'total_recebidas_ano': total_recebidas})        
+    
+    @action(detail=False, methods=['get'])
+
+    def total_faturamento_receber(self, request):
+
+        parcelas = ProjecaoFaturamento.objects.filter(contrato__tipo='cliente', pago=False)
+
+        total = parcelas.aggregate(total=Sum('valor_parcela'))['total']
+
+        return Response({'total_faturamento_receber': total})
 
 class ContaPagarAvulsoViewSet(viewsets.ModelViewSet):
     queryset = ContaPagarAvulso.objects.all()
@@ -222,8 +305,6 @@ class ProximosVencimentosView(APIView):
         return Response({
             "proximos_vencimentos": proximos_vencimentos.values('id', 'descricao', 'data_primeiro_vencimento', 'valor_total')
         }, status=status.HTTP_200_OK)
-
-
     
 class ProximosVencimentosViewSet(viewsets.ViewSet):
     """

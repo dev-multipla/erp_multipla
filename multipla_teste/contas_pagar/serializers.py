@@ -22,6 +22,14 @@ class ContaAPagarSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContaAPagar
         fields = ['contrato', 'forma_pagamento', 'data_pagamento', 'competencia', 'valor_total', 'projetos', 'avulso']  # Inclua 'avulso' aqui
+    
+    def validate(self, data):
+        # Verificar se o contrato já está pago no ProjecaoFaturamento
+        contrato = data.get('contrato')
+        vencimentos_pagos = contrato.projecoes_faturamento.filter(pago=True)
+        if vencimentos_pagos.exists():
+            raise serializers.ValidationError("Este contrato já foi pago anteriormente.")
+        return data
 
     def create(self, validated_data):
         projetos_data = validated_data.pop('projetos')
@@ -64,6 +72,14 @@ class ContaAReceberSerializer(serializers.ModelSerializer):
         model = ContaAReceber
         fields = ['contrato', 'forma_pagamento', 'data_recebimento', 'competencia', 'valor_total', 'projetos', 'avulso']  # Inclua 'avulso' aqui
     
+    def validate(self, data):
+        # Verificar se o contrato já recebeu em ProjecaoFaturamento
+        contrato = data.get('contrato')
+        vencimentos_recebidos = contrato.projecoes_faturamento.filter(pago=True)
+        if vencimentos_recebidos.exists():
+            raise serializers.ValidationError("Este contrato já teve recebimento registrado anteriormente.")
+        return data
+
     def create(self, validated_data):
         projetos_data = validated_data.pop('projetos')
         conta_a_receber = ContaAReceber.objects.create(**validated_data)

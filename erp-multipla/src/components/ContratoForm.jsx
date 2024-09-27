@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import { useAuth } from '../AuthContext';
+import { useParams } from 'react-router-dom'; // Para obter o ID do contrato da URL
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './ContratoForm.css';
@@ -13,6 +14,7 @@ import { ptBR } from 'date-fns/locale';
 Modal.setAppElement('#root');
 const ContratoForm = () => {
     const { token } = useAuth();
+    const { id } = useParams(); // Obtém o ID do contrato da URL
     const [formData, setFormData] = useState({
         numero: '',
         descricao: '',
@@ -38,15 +40,31 @@ const ContratoForm = () => {
     const [contratoDraft, setContratoDraft] = useState(null); // Guarda o contrato temporário
 
     useEffect(() => {
+        if (id) {
+            // Se houver um ID, estamos em modo de edição
+            axios.get(`http://127.0.0.1:8000/api/contratos/${id}/`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }).then(response => {
+                setFormData(response.data);
+            }).catch(error => {
+                console.error('Erro ao carregar dados do contrato', error);
+                toast.error('Erro ao carregar dados do contrato');
+            });
+        }
+    }, [id, token]);
+
+    useEffect(() => {
         if (formData.tipo === 'cliente') {
             axios.get('http://127.0.0.1:8000/api/select/clientes/', {
-                headers: { 'Authorization': `Token ${token}` }
+                headers: { 'Authorization': `Bearer ${token}` }
             }).then(response => {
                 setClientes(response.data);
             });
         } else if (formData.tipo === 'fornecedor') {
             axios.get('http://127.0.0.1:8000/api/select/fornecedores/', {
-                headers: { 'Authorization': `Token ${token}` }
+                headers: { 'Authorization': `Bearer ${token}` }
             }).then(response => {
                 setFornecedores(response.data);
             });
@@ -68,7 +86,7 @@ const ContratoForm = () => {
         });
     };
 
-    // Função para obter as projeções antes de cadastrar o contrato
+        // Função para obter as projeções antes de cadastrar o contrato
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -171,7 +189,7 @@ const ContratoForm = () => {
             <SideBar />
             <main className="ctr-main-content">
                 <div className="ctr-contrato-form-container">
-                    <h2>Cadastro de Contratos</h2>
+                    <h2>{id ? 'Editar Contrato' : 'Cadastro de Contratos'}</h2>
 
                     <form onSubmit={handleSubmit}>
                         <div className="ctr-form-row">

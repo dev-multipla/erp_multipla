@@ -149,10 +149,12 @@
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s ease;
+    margin-right: 10px;
   }
   
   .client-list .actions .add-button:hover {
     background-color: #0056b3; /* Azul escuro */
+
   }
 
   .client-list .actions input{
@@ -164,3 +166,17 @@
     margin-right: auto; /* Empurra o input para a esquerda */
   
   }
+
+  /* Estilos para o botão */
+.button-custom-edit {
+  background-color: #5BBFBA; /* Cor de fundo do botão */
+  color: white; /* Cor do texto do botão */
+  border: none; /* Sem borda */
+  padding: 10px 15px; /* Espaçamento interno do botão */
+  cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+  border-radius: 4px; /* Bordas arredondadas do botão */
+}
+
+.button-custom-edit:hover {
+  background-color: #45a049; /* Efeito hover no botão */
+}
