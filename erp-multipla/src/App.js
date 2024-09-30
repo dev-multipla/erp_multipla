@@ -7,6 +7,7 @@ import RegisterForm from './components/RegisterForm';
 import ContaPagarForm from './components/ContaPagarForm';
 import ContaAReceberForm from './components/ContaReceberForm';
 import RelatorioFinanceiro from './components/RelatorioFinanceiro';
+import RelatorioProjecoes from './components/RelatorioProjecoes';
 import HomePage from './components/HomePage';
 import ContractForm from './components/ContratoForm';
 import { useAuth } from './AuthContext';
@@ -87,6 +88,10 @@ function App() {
         <Route
           path="/relatorio-financeiro"
           element={isLoggedIn ? <RelatorioFinanceiro /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path="/relatorio-projecoes"
+          element={isLoggedIn ? <RelatorioProjecoes /> : <Navigate to="/" replace />}
         />
         <Route
           path="/cadastro-contrato"

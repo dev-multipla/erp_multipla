@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { FaChevronDown, FaTruck, FaChevronRight, FaFileContract, FaProjectDiagram, FaMoneyBill, FaFileInvoiceDollar, FaChartPie, FaBars } from 'react-icons/fa';
 import { HiUser } from 'react-icons/hi';
 import { MdPayments, MdOutlineMenuOpen, MdHome } from "react-icons/md";
@@ -14,6 +13,7 @@ function SideBar() {
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
     const [isCadastroOpen, setIsCadastroOpen] = useState(false);
     const [isFinanceiroOpen, setIsFinanceiroOpen] = useState(false);
+    const [isRelatorioOpen, setIsRelatorioOpen] = useState(false);
 
     const toggleSidebar = () => {
         // Inverte o estado da sidebar
@@ -23,6 +23,7 @@ function SideBar() {
 
     const toggleCadastro = () => setIsCadastroOpen(!isCadastroOpen);
     const toggleFinanceiro = () => setIsFinanceiroOpen(!isFinanceiroOpen);
+    const toggleRelatorio = () => setIsRelatorioOpen(!isRelatorioOpen);
 
     const navigate = useNavigate(); // Initialize useNavigate
 
@@ -41,6 +42,7 @@ function SideBar() {
         if (isSidebarCollapsed) {
             setIsCadastroOpen(false);
             setIsFinanceiroOpen(false);
+            setIsRelatorioOpen(false);
         }
     }, [isSidebarCollapsed]);
 
@@ -116,6 +118,24 @@ function SideBar() {
                                     <li>
                                         <Link to="/contas-receber-avulso"><FaFileInvoiceDollar /> Faturamento de Contrato Avulso</Link>
                                     </li>
+                                </ul>
+                            </div>
+                        )}
+                    </li>
+                    
+                    <li>
+                        <div onClick={toggleRelatorio} className={`menu-item ${isSidebarCollapsed ? 'collapsed' : ''}`}>
+                            {isRelatorioOpen ? <FaChevronDown /> : <FaChevronRight />}
+                            {isSidebarCollapsed ? <FaDollarSign /> : <span>Relatorio</span>}
+                        </div>
+                        {isRelatorioOpen && !isSidebarCollapsed && (
+                            <div className="submenu">
+                                <ul>
+                                    <li>
+                                        <Link to="/relatorio-projecoes"><FaMoneyBill /> Relatório de Projeções</Link>
+                                    </li>
+                                    
+                                    
                                     <li>
                                         <Link to="/relatorio-financeiro"><FaChartPie /> Relatório Financeiro</Link>
                                     </li>
@@ -123,6 +143,7 @@ function SideBar() {
                             </div>
                         )}
                     </li>
+
                 </ul>
                 <button
                     className="logout-button"

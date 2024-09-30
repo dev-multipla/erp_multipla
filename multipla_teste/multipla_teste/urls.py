@@ -7,7 +7,7 @@ from contratos.views import ContratoViewSet, ContratoSelectViewSet, ContratoList
 from projetos.views import ProjetoViewSet, ProjetoSelectViewSet, ProjetoListViewSet
 from pagamentos.views import FormaPagamentoViewSet, FormaPagamentoSelectViewSet, FormaPagamentoViewSet
 from contas_pagar import views
-from contas_pagar.views import ContaAPagarViewSet, ContaAReceberViewSet
+from contas_pagar.views import ContaAPagarViewSet, ContaAReceberViewSet, RelatorioProjecoesViewSet
 from .views import UserCreate, LogoutView
 from usuarios.views import UserCreate, LogoutView, login_view 
 from empresas.views import EmpresaViewSet, FilialViewSet, EmpresaListViewSet, FilialListViewSet
@@ -70,4 +70,5 @@ urlpatterns = [
     path('api/contas-a-receber/total-recebidas-ano/', views.ContaAReceberViewSet.as_view({'get': 'total_recebidas_ano'}), name='total-recebidas-ano'),
     path('api/contas-a-pagar/total_faturamento_pagar/', views.ContaAPagarViewSet.as_view({'get': 'total_faturamento_pagar'}), name='total_faturamento_pagar'),
     path('api/contas-a-receber/total_faturamento_receber/', views.ContaAReceberViewSet.as_view({'get': 'total_faturamento_receber'}), name='total_faturamento_receber'),
+    path('api/relatorio-projecoes/', RelatorioProjecoesViewSet.as_view({'get': 'gerar_relatorio'}), name='relatorio-projecoes'),
 ]

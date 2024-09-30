@@ -6,12 +6,14 @@ from django.db.models import Sum
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.db.models import Sum, F, Case, When, Value, DecimalField, CharField, Subquery, OuterRef 
-from django.db.models.functions import Coalesce
+from django.db.models.functions import Coalesce, TruncMonth
 from .models import ContaAPagar, ContaAReceber, ProjetoContaAPagar, ProjetoContaAReceber,ContaPagarAvulso,ContaReceberAvulso
 from .serializers import ContaAPagarSerializer, ContaAReceberSerializer, ContaPagarAvulsoSerializer, ContaReceberAvulsoSerializer
 import pandas as pd
+from dateutil.relativedelta import relativedelta
 from datetime import date, timedelta, datetime
 from contratos.models import ProjecaoFaturamento
+
 
 class ContaAPagarViewSet(viewsets.ModelViewSet):
     queryset = ContaAPagar.objects.all().prefetch_related('projetos')  # Use prefetch_related para carregar os projetos
@@ -174,6 +176,7 @@ class ContaAReceberViewSet(viewsets.ModelViewSet):
 
         return Response({'total_faturamento_receber': total})
 
+
 class ContaPagarAvulsoViewSet(viewsets.ModelViewSet):
     queryset = ContaPagarAvulso.objects.all()
     serializer_class = ContaPagarAvulsoSerializer
@@ -181,6 +184,83 @@ class ContaPagarAvulsoViewSet(viewsets.ModelViewSet):
 class ContaReceberAvulsoViewSet(viewsets.ModelViewSet):
     queryset = ContaReceberAvulso.objects.all()
     serializer_class = ContaReceberAvulsoSerializer
+
+class RelatorioProjecoesViewSet(viewsets.ViewSet):
+    @action(detail=False, methods=['get'])
+    def gerar_relatorio(self, request):
+        # Obter parâmetros da requisição
+        data_inicio = request.query_params.get('data_inicio')
+        data_fim = request.query_params.get('data_fim')
+        cliente = request.query_params.get('cliente')
+        status = request.query_params.get('status')
+        forma_pagamento = request.query_params.get('forma_pagamento')
+
+        # Definir valores padrão se os parâmetros estiverem ausentes ou vazios
+        if not data_inicio:
+            data_inicio = date.today().replace(day=1).isoformat()
+        if not data_fim:
+            data_fim = (date.today() + relativedelta(months=12)).replace(day=1).isoformat()
+
+        # Consulta base para projeções
+        projecoes = ProjecaoFaturamento.objects.filter(
+            data_vencimento__range=[data_inicio, data_fim]
+        ).annotate(
+            mes=TruncMonth('data_vencimento')
+        )
+
+        # Aplicar filtros adicionais se fornecidos e não vazios
+        if cliente and cliente.strip():
+            projecoes = projecoes.filter(contrato__cliente__nome__icontains=cliente)
+        
+        if status and status.strip():
+            if status.lower() == 'pago':
+                projecoes = projecoes.filter(pago=True)
+            elif status.lower() == 'aberto':
+                projecoes = projecoes.filter(pago=False)
+        
+        # Agregar dados
+        projecoes_agregadas = projecoes.values('mes', 'contrato__tipo').annotate(
+            valor_total=Sum('valor_parcela'),
+            valor_pago=Sum(Case(
+                When(pago=True, then=F('valor_parcela')),
+                default=0,
+                output_field=DecimalField()
+            )),
+            valor_aberto=Sum(Case(
+                When(pago=False, then=F('valor_parcela')),
+                default=0,
+                output_field=DecimalField()
+            ))
+        ).order_by('mes', 'contrato__tipo')
+
+        # Preparar dados para o relatório
+        relatorio = []
+        for projecao in projecoes_agregadas:
+            relatorio.append({
+                'mes': projecao['mes'].strftime('%Y-%m'),
+                'tipo': 'Receber' if projecao['contrato__tipo'] == 'cliente' else 'Pagar',
+                'valor_total': projecao['valor_total'],
+                'valor_pago': projecao['valor_pago'],
+                'valor_aberto': projecao['valor_aberto']
+            })
+
+        # Calcular totais
+        total_receber = sum(p['valor_total'] for p in relatorio if p['tipo'] == 'Receber')
+        total_pagar = sum(p['valor_total'] for p in relatorio if p['tipo'] == 'Pagar')
+        total_recebido = sum(p['valor_pago'] for p in relatorio if p['tipo'] == 'Receber')
+        total_pago = sum(p['valor_pago'] for p in relatorio if p['tipo'] == 'Pagar')
+
+        resultado = {
+            'relatorio': relatorio,
+            'totais': {
+                'total_receber': total_receber,
+                'total_pagar': total_pagar,
+                'total_recebido': total_recebido,
+                'total_pago': total_pago
+            }
+        }
+
+        return Response(resultado)
 
 class RelatorioFinanceiroViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['get'])

@@ -103,7 +103,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),  # 30 minutos
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),  # 30 minutos
     # ... outras configurações
 }
 

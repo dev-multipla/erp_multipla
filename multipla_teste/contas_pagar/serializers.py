@@ -101,3 +101,29 @@ class RelatorioFinanceiroSerializer(serializers.Serializer):
     receita = serializers.DecimalField(max_digits=10, decimal_places=2)
     despesa = serializers.DecimalField(max_digits=10, decimal_places=2)
     resultado = serializers.DecimalField(max_digits=10, decimal_places=2)
+
+class ProjecaoMensalSerializer(serializers.Serializer):
+    mes = serializers.CharField()
+    tipo = serializers.CharField()
+    valor_total = serializers.DecimalField(max_digits=10, decimal_places=2)
+    valor_pago = serializers.DecimalField(max_digits=10, decimal_places=2)
+    valor_aberto = serializers.DecimalField(max_digits=10, decimal_places=2)
+
+class TotaisSerializer(serializers.Serializer):
+    total_receber = serializers.DecimalField(max_digits=10, decimal_places=2)
+    total_pagar = serializers.DecimalField(max_digits=10, decimal_places=2)
+    total_recebido = serializers.DecimalField(max_digits=10, decimal_places=2)
+    total_pago = serializers.DecimalField(max_digits=10, decimal_places=2)
+
+class RelatorioProjecoesSerializer(serializers.Serializer):
+    relatorio = ProjecaoMensalSerializer(many=True)
+    totais = TotaisSerializer()
+
+    def to_representation(self, instance):
+        # Este método permite customizar a representação final dos dados
+        data = super().to_representation(instance)
+        
+        # Aqui você pode adicionar lógica adicional se necessário
+        # Por exemplo, adicionar campos calculados ou reformatar dados
+
+        return data
