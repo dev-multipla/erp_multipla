@@ -1,0 +1,217 @@
+/* Layout principal que usa flexbox */
+.cadastro-centro-layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar ocupa 20% da largura e fica à esquerda */
+.SideBar {
+  width: 20%;
+  background-color: #f4f4f4;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Conteúdo principal ocupa o restante da tela */
+.cadastro-centro-main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+.cadastro-centro-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cadastro-centro-header h1 {
+  font-size: 24px;
+}
+
+.cadastro-centro-form {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cadastro-centro-form-group {
+  margin-bottom: 15px;
+}
+
+.cadastro-centro-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.cadastro-centro-form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+.cadastro-centro-form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.cadastro-centro-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s;
+}
+
+.icon.save {
+  color: #28a745;
+}
+
+.icon.clear {
+  color: #ffc107;
+}
+
+.icon.back {
+  color: #17a2b8;
+}
+
+.icon-button:hover .icon {
+  transform: scale(1.1);
+}
+
+.cadastro-centro-error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.cadastro-centro-success-message {
+  color: green;
+  margin-top: 10px;
+}
+
+
+.cadastro-centro-lista {
+  margin-top: 20px;
+}
+
+.cadastro-centro-tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cadastro-centro-tabela th,
+.cadastro-centro-tabela td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.cadastro-centro-tabela th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.icon-button .icon.edit {
+  color: #007bff;
+}
+
+.icon-button .icon.delete {
+  color: #dc3545;
+}
+
+/* Lista de centros de custo */
+.centros-lista {
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0px 5px 20px rgba(148, 146, 146, 0.1);
+  max-width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.centros-lista h2 {
+  font-size: 24px;
+  color: #34495e;
+  margin-bottom: 20px;
+}
+
+.centros-lista-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.centro-item {
+  background: #ffffff;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0px 5px 20px rgba(148, 146, 146, 0.1);
+  color: #34495e;
+  font-size: 14px;
+}
+
+.centro-item p {
+  margin: 5px 0;
+}
+
+.centro-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+.icon.edit-icon, .icon.delete-icon {
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  height: 39px;
+}
+
+.icon.edit-icon {
+  color: #3498db;
+  
+}
+
+.icon.delete-icon {
+  color: #e74c3c;
+}
+
+.icon.edit-icon:hover {
+  background-color: #e0f7fa;
+}
+
+.icon.delete-icon:hover {
+  background-color: #ffebee;
+}

@@ -1,0 +1,215 @@
+/* Layout principal */
+.cpa-main-form-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+/* Estilização do Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+/* Conteúdo principal */
+.cpa-main-content {
+    flex: 1 1;
+    margin-left: 21px;
+    padding: 20px 40px;
+}
+
+/* Container do formulário */
+.cpa-cliente-form-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+/* Ajuste específico para a linha de contas financeiras e centro de custos */
+.form-row.financeiro {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.cpa-cliente-form-container h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #eee;
+}
+
+/* Formulário */
+.conta-receber-avulso-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Grupo de campos */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Linha de campos */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+/* Labels */
+label {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+/* Inputs e Selects */
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select,
+.react-datepicker-wrapper {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Seção de Projetos */
+.projetos-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 1px solid #e9ecef;
+}
+
+.projetos-section h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.projeto-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.projeto-item select {
+    flex: 2;
+}
+
+.projeto-item input {
+    flex: 1;
+}
+
+/* Botões */
+button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"] {
+    background-color: #2ecc71;
+    color: white;
+    width: 200px;
+    margin: 20px auto;
+}
+
+button[type="submit"]:hover {
+    background-color: #27ae60;
+}
+
+button[type="button"] {
+    background-color: #3498db;
+    color: white;
+}
+
+button[type="button"]:hover {
+    background-color: #2980b9;
+}
+
+.projeto-item button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 8px 15px;
+}
+
+.projeto-item button:hover {
+    background-color: #c0392b;
+}
+
+/* Mensagens de feedback */
+.error {
+    color: #e74c3c;
+    background-color: #fde8e7;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.success {
+    color: #2ecc71;
+    background-color: #e8f8f5;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .cpa-main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+    
+    .sidebar {
+        display: none;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .projeto-item {
+        flex-direction: column;
+    }
+    
+    button[type="submit"] {
+        width: 100%;
+    }
+}

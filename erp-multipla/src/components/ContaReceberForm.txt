@@ -1,0 +1,173 @@
+/* ContaReceberForm.css */
+
+.conta-pagar-form {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 20px auto;
+  }
+  
+  .conta-pagar-form h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #343a40;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #495057;
+  }
+  
+  .form-group select,
+  .form-group input[type="date"],
+  .form-group input[type="text"],
+  .form-group input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .form-group select:focus,
+  .form-group input[type="date"]:focus,
+  .form-group input[type="text"]:focus,
+  .form-group input[type="number"]:focus {
+    border-color: #80bdff;
+    outline: none;
+  }
+  
+  .projetos-section {
+    margin-top: 30px;
+  }
+  
+  .projetos-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #495057;
+  }
+  
+  .projeto-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+  }
+  
+  .projeto-item select,
+  .projeto-item input[type="number"] {
+    margin-right: 15px;
+    flex: 1;
+  }
+  
+  .projeto-item button {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .projeto-item button:hover {
+    background-color: #c82333;
+  }
+  
+  button[type="button"] {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #0056b3;
+  }
+  
+  button[type="submit"] {
+    background-color: #28a745;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+  }
+  
+  button[type="submit"]:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  button[type="submit"]:hover:not(:disabled) {
+    background-color: #218838;
+  }
+  
+  .error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .success {
+    color: #28a745;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+.botao-preencher {
+    background-color: #4CAF50; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    padding: 10px 20px; /* Espaçamento interno */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de ponteiro */
+    font-size: 16px; /* Tamanho da fonte */
+    margin-top: 20px; /* Espaçamento superior */
+    position: relative;
+    margin-left: 20px;
+}
+
+
+.tooltip-text {
+  margin-left: 8px; /* Espaçamento entre o ícone e o texto */
+  background-color: #333; /* Cor de fundo */
+  color: #fff; /* Cor do texto */
+  padding: 5px; /* Espaçamento interno */
+  border-radius: 4px; /* Bordas arredondadas */
+  position: absolute; /* Posição absoluta */
+  z-index: 1; /* Garantir que fique acima de outros elementos */
+  white-space: nowrap; /* Evitar quebra de linha */
+  display: none;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%)
+}
+
+.botao-preencher:hover .tooltip-text,
+.botao-preencher:focus .tooltip-text {
+  background-color: #45a049; /* Cor de fundo ao passar o mouse */
+  display: block;
+}
+
+

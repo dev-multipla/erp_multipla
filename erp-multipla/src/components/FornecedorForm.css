@@ -1,0 +1,125 @@
+.for-main-container {
+    display: flex;
+    width: 100%;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Conteúdo principal */
+.for-main-content {
+    width: 67%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+    margin-left: 50px;
+    margin-top: 20px;
+    height: 97vh;
+}
+
+/* Barra lateral esquerda */
+.left-panel {
+    width: 25%;
+    background: linear-gradient(135deg, #037C74, #65C1C2);
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.left-panel h3 {
+    margin-top: 0;
+}
+
+.right-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-panel h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Campos do formulário */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.form-group input,
+.form-group select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Tamanhos diferenciados para alguns campos */
+.input-medio {
+    width: 100%;
+}
+
+.input-pequeno {
+    width: 80px;
+}
+
+/* Botões */
+.for-form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.for-btn-primary,
+.for-btn-secondary {
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9em;
+}
+
+/* Botão principal (cadastrar) */
+.for-btn-primary {
+    background-color: #009C95;
+    color: white;
+}
+
+.for-btn-primary:hover {
+    background-color: #01726c;
+}
+
+/* Botão secundário (limpar) */
+.for-btn-secondary {
+    background-color: #a13333;
+    color: white;
+}
+
+.for-btn-secondary:hover {
+    background-color: #702727;
+}
+
+/* Ajuste para campos alinhados corretamente */
+.form-row .form-group:not(:last-child) {
+    margin-right: 20px;
+}

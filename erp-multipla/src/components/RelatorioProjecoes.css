@@ -1,0 +1,119 @@
+
+.relatorio-projecoes-container {
+  display: flex; /* Usamos flexbox para dividir a área */
+    height: 100vh; /* Altura total da viewport */
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 0;
+  color: #2c3e50;
+}
+
+.relatorio-projecoes {
+  margin: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.relatorio-projecoes h2 {
+  font-size: 2em;
+  color: #34495e;
+  margin-bottom: 20px;
+}
+
+.relatorio-projecoes form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.relatorio-projecoes form div {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.relatorio-projecoes label {
+  font-weight: bold;
+  color: #34495e;
+  margin-bottom: 5px;
+}
+
+.relatorio-projecoes input,
+.relatorio-projecoes select {
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.relatorio-projecoes button {
+  padding: 10px 20px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.relatorio-projecoes button:hover {
+  background-color: #2ecc71;
+}
+
+.relatorio-projecoes h3 {
+  font-size: 1.5em;
+  color: #34495e;
+  margin-bottom: 15px;
+}
+
+.relatorio-projecoes p {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.relatorio-projecoes table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.relatorio-projecoes table th,
+.relatorio-projecoes table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.relatorio-projecoes table th {
+  background-color: #2980b9;
+  color: white;
+  font-weight: bold;
+}
+
+.relatorio-projecoes table td {
+  background-color: #f9f9f9;
+  color: #34495e;
+}
+
+.relatorio-projecoes table tr:hover {
+  background-color: #ecf0f1;
+}
+
+@media (max-width: 768px) {
+  .relatorio-projecoes form {
+    flex-direction: column;
+  }
+
+  .relatorio-projecoes form div {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .relatorio-projecoes button {
+    width: 100%;
+  }
+}

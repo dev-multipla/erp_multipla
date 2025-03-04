@@ -1,0 +1,355 @@
+/* Layout principal que usa flexbox */
+.cadastro-layout {
+  display: flex;
+  height: 100vh; /* Ocupa toda a altura da tela */
+}
+
+/* Sidebar ocupa 20% da largura e fica à esquerda */
+.SideBar {
+  width: 20%; /* Ajuste conforme necessário */
+  background-color: #f4f4f4; /* Cor de fundo para destacar o SideBar */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para o efeito de destaque */
+}
+
+/* Conteúdo principal ocupa o restante da tela */
+.cadastro-main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  overflow-y: auto; /* Adiciona scroll vertical se o conteúdo for maior que a tela */
+}
+
+.cadastro-cp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cadastro-cp-header h1 {
+  font-size: 24px;/* Layout principal que usa flexbox */
+  .cadastro-layout {
+    display: flex;
+    height: 100vh; /* Ocupa toda a altura da tela */
+  }
+  
+  /* Sidebar ocupa 20% da largura e fica à esquerda */
+  .SideBar {
+    width: 20%; /* Ajuste conforme necessário */
+    background-color: #f4f4f4; /* Cor de fundo para destacar o SideBar */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para o efeito de destaque */
+  }
+  
+  /* Conteúdo principal ocupa o restante da tela */
+  .cadastro-main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    overflow-y: auto; /* Adiciona scroll vertical se o conteúdo for maior que a tela */
+  }
+  
+  .cadastro-cp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .cadastro-cp-header h1 {
+    font-size: 24px;
+  }
+  
+  .cadastro-user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .cadastro-user-info img {
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  /* Estilização adicional para o formulário */
+  .cadastro-form {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cadastro-form-group {
+    margin-bottom: 15px;
+  }
+  
+  .cadastro-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .cadastro-form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+  
+  .cadastro-form-control:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .cadastro-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .icon-button {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px !important;
+    height: 40px !important;
+    position: relative;
+  }
+  
+  .icon {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s;
+  }
+  
+  .icon.save {
+    color: #28a745; /* Verde para salvar */
+  }
+  
+  .icon.cancel {
+    color: #dc3545; /* Vermelho para cancelar */
+  }
+  
+  .icon.clear {
+    color: #ffc107; /* Amarelo para limpar */
+  }
+  
+  .icon.back {
+    color: #17a2b8; /* Azul para voltar */
+  }
+  
+  .icon-button:hover .icon {
+    transform: scale(1.1);
+  }
+  
+  /* Estilo para a legenda (tooltip) */
+  .icon-button::after {
+    content: attr(title);
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s, bottom 0.3s;
+    pointer-events: none;
+  }
+  
+  .icon-button:hover::after {
+    opacity: 1;
+    bottom: -40px;
+  }
+  
+}
+
+.cadastro-user-info {
+  display: flex;
+  align-items: center;
+}
+
+.cadastro-user-info img {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Estilização adicional para o formulário */
+.cadastro-form {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cadastro-form-group {
+  margin-bottom: 15px;
+}
+
+.cadastro-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.cadastro-form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+.cadastro-form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.cadastro-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.icon-button {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px !important;
+  height: 40px !important;
+  position: relative;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s;
+}
+
+.icon.save {
+  color: #28a745; /* Verde para salvar */
+}
+
+.icon.cancel {
+  color: #dc3545; /* Vermelho para cancelar */
+}
+
+.icon.clear {
+  color: #ffc107; /* Amarelo para limpar */
+}
+
+.icon.back {
+  color: #17a2b8; /* Azul para voltar */
+}
+
+.icon-button:hover .icon {
+  transform: scale(1.1);
+}
+
+/* Estilo para a legenda (tooltip) */
+.icon-button::after {
+  content: attr(title);
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s, bottom 0.3s;
+  pointer-events: none;
+}
+
+.icon-button:hover::after {
+  opacity: 1;
+  bottom: -40px;
+}
+
+/* Lista de contas financeiras */
+.contas-lista {
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0px 5px 20px rgba(148, 146, 146, 0.1);
+  max-width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.contas-lista h2 {
+  font-size: 24px;
+  color: #34495e;
+  margin-bottom: 20px;
+}
+
+.contas-lista-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.conta-item {
+  background: #ffffff;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0px 5px 20px rgba(148, 146, 146, 0.1);
+  color: #34495e;
+  font-size: 14px;
+}
+
+.conta-item p {
+  margin: 5px 0;
+}
+
+.conta-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+.icon.edit-icon, .icon.delete-icon {
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  height: 39px;
+}
+
+.icon.edit-icon {
+  color: #3498db;
+}
+
+.icon.delete-icon {
+  color: #e74c3c;
+}
+
+.icon.edit-icon:hover {
+  background-color: #e0f7fa;
+}
+
+.icon.delete-icon:hover {
+  background-color: #ffebee;
+}

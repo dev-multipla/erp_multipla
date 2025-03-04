@@ -1,0 +1,167 @@
+/* ContractsList.css */
+
+/* Container principal */
+.fornecedor-list {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título */
+  .fornecedor-list h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 10px;
+  }
+  
+  /* Botões de Ação */
+  .fornecedor-list .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .fornecedor-list .actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .fornecedor-list .actions .add-button {
+    background-color: #15968b;
+    color: white;
+  }
+  
+  .fornecedor-list .actions .add-button:hover {
+    background-color: #218838;
+  }
+  
+  .fornecedor-list .actions .delete-button {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .fornecedor-list .actions .delete-button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Estilização da tabela */
+  .fornecedor-list table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .fornecedor-list th, .fornecedor-list td {
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  .fornecedor-list th {
+    background-color: #f1f1f1;
+    color: #333;
+    font-weight: bold;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .fornecedor-list td {
+    border-bottom: 1px solid #dee2e6;
+    color: #555;
+  }
+  
+  .fornecedor-list tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* Checkbox */
+  .fornecedor-list input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  /* Centraliza o botão de imprimir */
+  .fornecedor-list .print-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .fornecedor-list .print-button {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .fornecedor-list .print-button:hover {
+    background-color: #5a6268;
+  }
+  
+  .fornecedor-list-container {
+    display: flex;
+    height: 100vh; /* Faz com que o container ocupe a altura total da tela */
+}
+
+/* Sidebar ocupa um espaço fixo */
+.sidebar {
+    width: 250px; /* Ajuste conforme necessário */
+    background-color: #343a40;
+    color: white;
+    padding: 15px;
+}
+
+/* Estilização da lista de contratos */
+.fornecedor-list {
+    flex-grow: 1;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Adiciona estilização para o novo botão */
+.fornecedor-list .actions {
+    display: flex;
+    justify-content: flex-end; /* Alinha o botão à direita */
+    margin-bottom: 20px; /* Espaçamento abaixo do botão */
+  }
+  
+  .fornecedor-list .actions .add-button {
+    background-color: #007bff; /* Azul */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+  }
+  
+  .fornecedor-list .actions .add-button:hover {
+    background-color: #0056b3; /* Azul escuro */
+  }
+
+  .fornecedor-list .actions input{
+    padding: 10px;
+    border: 1px solid #0cbd91;
+    border-radius: 5px;
+    width: 250px; /* Ou ajuste para a largura desejada */
+    flex-grow: 0;  /* Impede que o input cresça além da largura definida */
+    margin-right: auto; /* Empurra o input para a esquerda */
+  
+  }

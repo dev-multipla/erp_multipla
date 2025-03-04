@@ -1,0 +1,132 @@
+/* Container geral do layout */
+.pg-layout-container {
+    display: flex;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding-right: 20px;
+    padding-top: 1px;
+}
+
+/* Sidebar com informações adicionais */
+.pg-left-panel {
+    width: 25%;
+    background: linear-gradient(135deg, #037C74, #65C1C2);
+    color: white;
+    padding: 20px;
+    /*border-radius: 8px;
+    margin-right: 20px; */
+    box-sizing: border-box;
+    height: 97vh;
+    margin-top: 20px;
+    border-radius: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Container principal do formulário */
+.pg-main-content {
+    display: flex;
+    width: 69%;
+    background-color: white;
+    border-radius: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 97vh;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.pagamento-form-container {
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 75vh;
+    width: 85%;
+    position: relative;
+    left: 10%;
+}
+
+/* Estilização geral do formulário */
+.pagamento-form-container h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.pagamento-form-container form {
+    width: 100%;
+}
+
+/* Estilização das linhas do formulário */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 250px;
+    padding: 0 10px;
+}
+
+/* Estilização dos labels */
+.pagamento-form-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Estilização dos campos de input */
+.pagamento-form-container input[type="text"],
+.pagamento-form-container input[type="date"],
+.pagamento-form-container select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Estilização das ações do formulário */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+/* Estilização dos botões */
+.pg-btn-primary {
+    background-color: #009C95 !important;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pg-btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.pg-btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pg-btn-secondary:hover {
+    background-color: #5a6268;
+}

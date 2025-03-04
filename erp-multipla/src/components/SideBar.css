@@ -1,0 +1,271 @@
+/* Estilos gerais */
+.sidebar-container {
+  width: 250px;
+  background-color: #009C95;
+  color: #ffffff;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s;
+  position: relative;
+}
+
+.sidebar-container h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  transition: margin-bottom 0.3s;
+}
+
+.sidebar-container.collapsed h2 {
+  display: none;
+
+}
+
+.sidebar-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-container ul li {
+  margin-bottom: 10px;
+
+.toggle-button-container {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+  }
+
+  .toggle-button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+    /* Mudar para relative */
+    margin-bottom: 20px;
+    transition: right 0.3s;
+  }
+
+  .sidebar-container.collapsed .toggle-button {
+
+    position: static;
+  }
+}
+
+.menu-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.menu-item span {
+  margin-left: 10px;
+}
+
+.sidebar-container ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-container ul li a svg {
+  margin-right: 10px;
+}
+
+.sidebar-container ul li a:hover {
+  background-color: #495057;
+}
+
+.submenu {
+  margin-left: 20px;
+}
+
+.submenu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.submenu ul li {
+  padding-top: 5px;
+  margin-bottom: 5px;
+}
+
+.submenu ul li a {
+  color: #cfd8dc;
+}
+
+.submenu ul li a:hover {
+  color: #ffffff;
+}
+
+.logout-button {
+  display: none;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #dc3545;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+  right: 10px;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
+
+.home-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 35px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffffff;
+  
+}
+
+.home-button:hover {
+  background-color: #286b5a;
+}
+
+/* Estilos para a sidebar colapsada */
+.sidebar-container.collapsed {
+  width: 80px;
+}
+
+.sidebar-container.collapsed .menu-item span {
+  display: none;
+  /* Oculta as labels de texto quando colapsada */
+
+}
+
+.sidebar-container.collapsed .sidebar-title {
+  display: none;
+}
+
+.sidebar-container.collapsed .logout-button {
+  bottom: 40px;
+}
+
+.toggle-button-container {
+  position: absolute;
+  top: 20px;
+  right: 12px;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  position: relative;
+  /* Mudar para relative */
+  margin-bottom: 20px;
+  transition: right 0.3s;
+}
+
+.sidebar-container.collapsed .toggle-button-container {
+  margin-bottom: 50px;
+  /* Aumenta o espaço abaixo do botão de toggle quando colapsado */
+}
+
+.sidebar-container.collapsed .toggle-button {
+  position: static;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 30px;
+  /* Adiciona margem para isolar o botão */
+}
+
+
+.main-content {
+  transition: margin-left 0.5s;
+  /* Increase transition duration */
+}
+
+/* Adicionar margem ao primeiro item do menu para afastá-lo do botão de toggle */
+/*.sidebar ul {*/
+/*  list-style: none; */
+/*  padding: 0;*/
+/*  margin-top: 70px;  Adiciona margem superior para afastar os itens de menu do botão de toggle */
+
+/* Ajustes para dispositivos móveis */
+@media screen and (max-width: 768px) {
+  .sidebar-container {
+    width: 200px;
+    /* Reduz a largura da sidebar */
+    padding: 10px;
+  }
+
+  .menu-item {
+    margin-top: 20px;
+  }
+
+  .sidebar-container ul li a {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  .logout-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .sidebar-container.collapsed {
+    width: 50px;
+    position: relative;
+    margin-top: 1px;
+    padding-top: 40px;
+  }
+
+  .sidebar-container.collapsed .toggle-button-container {
+    margin-bottom: 50px;
+    margin-top: -18px;
+    margin-right: -10px;
+    /* Aumenta o espaço abaixo do botão de toggle quando colapsado */
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    /* Garante que o overlay fique acima do conteúdo */
+  }
+
+  .sidebar-container {
+    position: relative;
+    z-index: 1000;
+    /* Garante que a sidebar fique acima do overlay */
+  }
+
+
+
+}
