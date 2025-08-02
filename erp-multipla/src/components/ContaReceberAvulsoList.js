@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // ContaReceberList.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -92,8 +93,151 @@ const ContaReceberAvulsoList = () => {
   ))}
 </tbody>
       </table>
+=======
+// ContaReceberAvulsoList.js
+
+import React, { useEffect, useState } from 'react';
+import api from '../api'; // Importa a instância configurada do axios
+import { ToastContainer, toast } from 'react-toastify';
+import { BarLoader } from 'react-spinners';
+import 'react-toastify/dist/ReactToastify.css';
+import './ContaReceberList.css';
+import { GrEdit, GrTrash } from "react-icons/gr";
+import ConfirmModal from './ConfirmModal';
+
+const ContaReceberAvulsoList = ({ onEdit, refresh }) => {
+  const [contas, setContas] = useState([]);
+  const [clientes, setClientes] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDeleteId, setSelectedDeleteId] = useState(null);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      // Usando a instância api para requisições
+      const [contasResponse, clientesResponse] = await Promise.all([
+        api.get('/api/contas-a-receber-avulso/'), // Caminho relativo
+        api.get('/api/select/clientes/') // Caminho relativo
+      ]);
+
+      const clientesMap = clientesResponse.data.reduce((acc, cliente) => {
+        acc[cliente.id] = cliente.nome;
+        return acc;
+      }, {});
+
+      setContas(contasResponse.data);
+      setClientes(clientesMap);
+    } catch (error) {
+      toast.error('Erro ao carregar dados');
+      console.error('Erro ao carregar dados:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [refresh]);
+
+  const handleDelete = async (id) => {
+    setDeletingId(id);
+    try {
+      // Usando a instância api para deletar
+      await api.delete(`/api/contas-a-receber-avulso/${id}/`); // Caminho relativo
+      setContas(prev => prev.filter(conta => conta.id !== id));
+      toast.success('Conta removida com sucesso');
+    } catch (error) {
+      console.error('Erro ao remover conta:', error);
+      toast.error('Erro ao remover conta');
+    } finally {
+      setDeletingId(null);
+      setIsModalOpen(false);
+    }
+  };
+
+  return (
+    <div className="conta-receber-avulso-container">
+      <h2>Faturamento de contratos Avulsos</h2>
+      <ToastContainer />
+
+      {loading ? (
+        <BarLoader color="#36D7B7" width="100%" />
+      ) : (
+        <div className="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Data Recebimento</th>
+                <th>Cliente</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {contas.map(conta => (
+                <tr key={conta.id}>
+                  <td>{conta.descricao}</td>
+                  <td>R$ {parseFloat(conta.valor).toFixed(2)}</td>
+                  <td>{new Date(conta.data_recebimento).toLocaleDateString('pt-BR')}</td>
+                  <td>{clientes[conta.cliente] || 'N/A'}</td>
+                  <td>
+                    <div className="actions">
+                      <button
+                        onClick={() => {
+                          console.log('Editando conta:', conta);
+                          onEdit(conta.id);
+                        }}
+                        className="edit-button"
+                        title="Editar"
+                      >
+                        <GrEdit />
+                      </button>
+                      {deletingId === conta.id ? (
+                        <BarLoader width={30} color="#ff4444" />
+                      ) : (
+                        <button
+                          onClick={() => {
+                            setSelectedDeleteId(conta.id);
+                            setIsModalOpen(true);
+                          }}
+                          className="delete-button"
+                          title="Excluir"
+                        >
+                          <GrTrash />
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {contas.length === 0 && !loading && (
+            <div className="no-results">
+              <p>Nenhuma conta encontrada</p>
+            </div>
+          )}
+        </div>
+      )}
+
+      <ConfirmModal
+        isOpen={isModalOpen}
+        title="Confirmar Exclusão"
+        message="Tem certeza que deseja excluir esta conta permanentemente?"
+        onConfirm={() => handleDelete(selectedDeleteId)}
+        onCancel={() => setIsModalOpen(false)}
+      />
+>>>>>>> e62255e (Atualizações no projeto)
     </div>
   );
 };
 
+<<<<<<< HEAD
 export default ContaReceberAvulsoList;
+=======
+export default ContaReceberAvulsoList;
+>>>>>>> e62255e (Atualizações no projeto)

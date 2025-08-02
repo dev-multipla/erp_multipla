@@ -1,0 +1,168 @@
+/* Container principal - Ocupa toda a altura da tela */
+.funcionario-form-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5f7fa;
+    padding-right: 20px;
+    /*padding: 20px;*/
+    /*gap: 30px;*/
+
+}
+
+
+/* Conteúdo principal - Ocupa espaço restante */
+.f-main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /*padding: 30px 0;*/
+}
+
+/* Container do formulário - Centralizado e maior */
+.f-funcionario-form-container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 98%;
+    margin: 0 auto;
+    height: 98vh;
+}
+
+/* Sidebar - Altura total e alinhamento */
+.funcionario-form-sidebar {
+    width: 350px;
+    background: linear-gradient(135deg, #037C74, #65C1C2);
+    color: white;
+    padding: 40px 25px;
+    border-radius: 12px;
+    height: calc(100vh - 40px); /* 40px = padding do container */
+    position: sticky;
+    top: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.formulario-funcionario{
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Ajustes nos grupos de campos */
+.f-form-row {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.f-form-group {
+    flex: 1;
+    min-width: 280px;
+}
+
+.f-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.f-form-group input,
+.f-form-group select,
+.f-form-group .react-datepicker-wrapper {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background-color: #fff;
+    transition: border-color 0.2s;
+}
+/* Botões maiores e centralizados */
+.f-form-actions {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    justify-content: center;
+}
+
+.f-btn-primary,
+.f-btn-secondary {
+    padding: 15px 35px;
+    font-size: 1.05rem;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.f-btn-primary:hover,
+.f-btn-secondary:hover {
+    transform: translateY(-2px);
+}
+
+/* Títulos maiores */
+.f-funcionario-form-container h2 {
+    font-size: 2rem;
+    color: #037C74;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+
+/* Sidebar - Texto mais legível */
+.funcionario-form-sidebar h3 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.funcionario-form-sidebar p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Responsividade */
+@media (max-width: 1400px) {
+    .funcionario-form-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .funcionario-form-sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        margin-top: 30px;
+    }
+
+    .f-main-content {
+        padding: 0;
+    }
+
+    .f-funcionario-form-container {
+        width: 100%;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .f-form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .f-form-group {
+        min-width: 100%;
+    }
+
+    .f-funcionario-form-container {
+        padding: 25px;
+    }
+
+    .f-funcionario-form-container h2 {
+        font-size: 1.75rem;
+    }
+}

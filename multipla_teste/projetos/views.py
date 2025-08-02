@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from rest_framework import viewsets, permissions, serializers
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -18,6 +19,43 @@ class ProjetoViewSet(viewsets.ModelViewSet):
 class ProjetoSelectViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Projeto.objects.filter(is_active=True)
     serializer_class = ProjetoSerializer
+=======
+# projetos/views.py
+from rest_framework import viewsets, permissions, status
+from rest_framework.response import Response
+from rest_framework.decorators import action
+
+from .models import Projeto
+from .serializers import (
+    ProjetoSerializer,
+    ProjetoListSerializer,
+    ProjetoSelectSerializer
+)
+from multipla_teste.core.mixins import CompanyScopedMixin
+
+
+class ProjetoViewSet(CompanyScopedMixin, viewsets.ModelViewSet):
+    queryset = Projeto.objects.all()
+    serializer_class = ProjetoSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(is_active=True)
+
+    @action(detail=False, methods=['post'], url_path='soft-delete')
+    def soft_delete(self, request):
+        ids = request.data.get('ids', [])
+        Projeto.objects.filter(id__in=ids).update(is_active=False)
+        return Response(
+            {"message": "Projetos excluídos com sucesso."},
+            status=status.HTTP_200_OK
+        )
+
+
+class ProjetoSelectViewSet(CompanyScopedMixin, viewsets.ReadOnlyModelViewSet):
+    queryset = Projeto.objects.all()
+>>>>>>> e62255e (Atualizações no projeto)
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
@@ -25,6 +63,7 @@ class ProjetoSelectViewSet(viewsets.ReadOnlyModelViewSet):
             return ProjetoSelectSerializer
         return ProjetoSerializer
 
+<<<<<<< HEAD
 
 class ProjetoSelectSerializer(serializers.ModelSerializer):
     class Meta:
@@ -36,3 +75,18 @@ class ProjetoListViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Projeto.objects.filter(is_active=True)
     serializer_class = ProjetoListSerializer
     permission_classes = [permissions.IsAuthenticated]
+=======
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(is_active=True)
+
+
+class ProjetoListViewSet(CompanyScopedMixin, viewsets.ReadOnlyModelViewSet):
+    queryset = Projeto.objects.all()
+    serializer_class = ProjetoListSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(is_active=True)
+>>>>>>> e62255e (Atualizações no projeto)

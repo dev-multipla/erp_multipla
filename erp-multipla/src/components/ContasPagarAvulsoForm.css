@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Layout principal */
 .cpa-main-form-container {
     display: flex;
@@ -166,3 +167,250 @@ input[type="date"] {
         transform: translateX(0);
     }
 }
+=======
+/* ContasPagarAvulsoForm.css */
+
+/* Container principal: Sidebar + conteúdo */
+.cpa-main-form-container {
+  display: flex;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+}
+
+/* A sidebar deve manter seu estilo original; certifique-se de não sobrescrevê-la aqui */
+
+/* Área principal (conteúdo) */
+.cpa-main-content {
+  flex-grow: 1;
+  padding: 20px;
+  width: calc(100% - 250px); /* considerando sidebar com 250px */
+  overflow-y: auto;
+}
+
+/* Container do formulário: ocupa mais espaço e centralizado */
+.cpa-cliente-form-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(148, 146, 146, 0.1);
+  margin: 20px auto;
+  width: 100%;
+  max-width: 1700px !important;
+}
+
+/* Cabeçalho do formulário */
+.cpa-cliente-form-container h2 {
+  font-size: 24px;
+  color: #2C3E50;
+  margin-bottom: 20px;
+}
+
+/* Define que cada linha do formulário deve ser flexível e os campos tenham o mesmo tamanho */
+.form-row {
+    display: flex;
+    gap: 20px; /* Espaço entre os campos */
+    margin-bottom: 20px; /* Distância entre as linhas */
+  }
+  
+  /* Cada input dentro da linha terá o mesmo tamanho */
+  .form-row .cpa-form-group {
+    flex: 1;
+  }
+  
+  /* Ajusta todos os inputs e selects para terem a mesma altura e aparência */
+  .contas-pagar-avulso-form input[type="text"],
+  .contas-pagar-avulso-form input[type="number"],
+  .contas-pagar-avulso-form input[type="date"],
+  .contas-pagar-avulso-form select,
+  .react-datepicker__input-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    height: 42px; /* Garante que todos tenham a mesma altura */
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Mantém o foco padronizado */
+  .contas-pagar-avulso-form input:focus,
+  .contas-pagar-avulso-form select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+  }
+  
+  /* Estilização do DatePicker para se parecer com os outros inputs */
+  .react-datepicker-wrapper {
+    width: 100%;
+  }
+  
+  .react-datepicker__input-container input {
+    width: 100%;
+    height: 42px; /* Mantém a altura uniforme */
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  /* Ajuste para remover espaço extra do DatePicker */
+  .react-datepicker-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+
+/* Estilização do DatePicker da Competência */
+/* Remove a borda duplicada do wrapper e aplica estilo somente no input interno */
+.react-datepicker-wrapper {
+    width: 100%;
+    border: none !important;  /* Remove qualquer borda */
+    background: transparent !important; /* Remove fundo caso tenha */
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block; /* Garante que não crie espaçamentos extras */
+}
+
+
+.react-datepicker__input-container {
+  width: 100%;
+}
+
+.react-datepicker__input-container input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;  /* Mesma borda dos outros inputs */
+  border-radius: 5px;  /* Deixe igual aos outros inputs */
+  box-sizing: border-box;
+  height: 40px;
+  transition: border-color 0.3s ease;
+  background: white;
+}
+
+.react-datepicker__input-container input:focus {
+  outline: none;
+  border-color: #1E3A8A; /* Mesma cor de foco dos outros inputs */
+  box-shadow: 0 0 5px rgba(30, 58, 138, 0.2);
+}
+/* Seção de projetos */
+.cpa-projetos-section {
+  margin-bottom: 20px;
+}
+
+.cpa-projetos-section h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #34495e;
+}
+
+.cpa-projeto-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.cpa-projeto-item select,
+.cpa-projeto-item input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  height: 40px;
+  transition: border-color 0.3s ease;
+}
+
+.cpa-projeto-item select:focus,
+.cpa-projeto-item input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+}
+
+.cpa-projeto-item button {
+  background-color: #e03131;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 0 12px;
+  cursor: pointer;
+  height: 40px;
+  transition: background-color 0.3s ease;
+}
+
+.cpa-projeto-item button:hover {
+  background-color: #c92a2a;
+}
+
+.cpa-projetos-section button {
+  background-color: #3498db;
+  color: #ffffff;
+  padding: 7px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.cpa-projetos-section button:hover {
+  background-color: #2980b9;
+}
+
+/* Botão de submit */
+.contas-pagar-avulso-form button[type="submit"] {
+  background-color: #3498db;
+  color: #ffffff;
+  padding: 7px 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  width: 100%;
+  height: 45px;
+}
+
+.contas-pagar-avulso-form button[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+/* Mensagens de erro e sucesso */
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+.success {
+  color: #009C95;
+  margin-top: 10px;
+}
+
+/* Container da listagem, posicionado abaixo do formulário */
+.cpa-list-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(148,146,146,0.1);
+  margin: 20px auto;
+  width: 100%;
+  max-width: 1700px;
+}
+
+.total-display {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0; /* Fundo diferenciado para indicar que não é editável */
+  color: #333;
+}
+>>>>>>> e62255e (Atualizações no projeto)

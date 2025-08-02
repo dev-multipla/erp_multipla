@@ -1,0 +1,534 @@
+/* Container geral do layout */
+.relatorio-container {
+    display: flex;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding-right: 20px;
+    padding-top: 1px;
+}
+
+/* Sidebar estilizada */
+.relatorio-sidebar {
+    width: 25%;
+    background: linear-gradient(135deg, #037C74, #65C1C2);
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 97vh;
+    margin-top: 20px;
+    border-radius: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-tips {
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.sidebar-tips h4 {
+    margin-bottom: 10px;
+}
+
+.sidebar-tips ul {
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.sidebar-tips li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.sidebar-tips li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #ffffff;
+}
+
+/* Container principal do conteúdo */
+.r-main-content {
+    display: flex;
+    width: 69%;
+    background-color: white;
+    border-radius: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 97vh;
+    margin-top: 20px;
+    margin-left: 10px;
+    overflow-y: auto;
+}
+
+.r-relatorio-container {
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 95%;
+    position: relative;
+    left: 2.5%;
+    padding-bottom: 40px;
+}
+
+/* Ajustes de espaçamento para o cabeçalho */
+.r-relatorio-container h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin: 10px 0 20px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.r-relatorio-container h3 {
+    font-size: 1.2em;
+    color: #037C74;
+    margin: 20px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+/* === NOVO LAYOUT DE FILTROS COMPACTO === */
+.r-filtros-form {
+    background: #f8f9fa;
+    border: 1px solid #e0e6ed;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Layout em grid compacto - máximo 4 colunas */
+.r-form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px 16px;
+    margin-bottom: 12px;
+}
+
+/* Última linha com checkboxes ocupa mais espaço */
+.r-form-row:last-of-type {
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+}
+
+/* Form groups compactos */
+.r-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+}
+
+/* Labels menores e mais discretos */
+.r-form-group label {
+    font-size: 0.75em;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Inputs compactos */
+.r-select,
+.r-input,
+.r-date-picker {
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 0.85em;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: white;
+    transition: border-color 0.2s ease;
+}
+
+.r-select:focus,
+.r-input:focus,
+.r-date-picker:focus {
+    outline: none;
+    border-color: #037C74;
+    box-shadow: 0 0 0 2px rgba(3, 124, 116, 0.1);
+}
+
+/* Grupo de checkboxes horizontal */
+.r-checkbox-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.r-checkbox-group .r-checkbox-label {
+    font-size: 0.75em;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.r-checkbox-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 20px;
+    align-items: center;
+}
+
+.r-checkbox-option {
+    display: flex;
+    align-items: center;
+    font-size: 0.85em;
+    color: #495057;
+    white-space: nowrap;
+}
+
+.r-checkbox-option input {
+    margin-right: 6px;
+    transform: scale(0.9);
+}
+
+/* Botões de ação */
+.r-form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e9ecef;
+}
+
+.r-btn-primary {
+    background-color: #009C95 !important;
+    color: white;
+    font-size: 0.9em;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 140px;
+}
+
+.r-btn-primary:hover {
+    background-color: #01726c !important;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.r-btn-primary:disabled {
+    background-color: #7fb9b6 !important;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.r-btn-secondary {
+    background-color: #fff;
+    color: #495057;
+    font-size: 0.9em;
+    font-weight: 600;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 140px;
+}
+
+.r-btn-secondary:hover {
+    background-color: #f8f9fa;
+    color: #333;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade para filtros */
+@media (max-width: 1200px) {
+    .r-form-row {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 10px;
+    }
+    
+    .r-form-row:last-of-type {
+        grid-template-columns: 1fr;
+    }
+    
+    .r-checkbox-options {
+        gap: 12px 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .r-form-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .r-checkbox-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .r-form-actions {
+        flex-direction: column;
+    }
+}
+
+/* === TOOLBAR DE RESULTADOS === */
+.r-results-toolbar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+}
+
+/* === RESTO DOS ESTILOS ORIGINAIS === */
+
+/* Estilização dos resultados */
+.r-resultado-section {
+    margin-top: 30px;
+}
+
+.r-resumo-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.r-resumo-card {
+    flex: 1;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 0 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.r-resumo-card h4 {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+
+.r-resumo-card .r-valor {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.r-receitas {
+    background-color: #e6f7f6;
+    border-left: 4px solid #28a745;
+}
+
+.r-despesas {
+    background-color: #fff5f5;
+    border-left: 4px solid #dc3545;
+}
+
+.r-saldo {
+    background-color: #f8f9fa;
+}
+
+.r-positivo {
+    border-left: 4px solid #28a745;
+}
+
+.r-negativo {
+    border-left: 4px solid #dc3545;
+}
+
+/* Estilização da tabela */
+.r-tabela-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.r-tabela-resultado {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.r-tabela-resultado th {
+    background-color: #f2f2f2;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85em;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+}
+
+.r-tabela-resultado td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.85em;
+}
+
+.r-linha-receita {
+    background-color: #f7fffa;
+}
+
+.r-linha-despesa {
+    background-color: #fffafa;
+}
+
+.r-valor-cell {
+    text-align: right;
+    font-weight: 500;
+}
+
+.r-sem-dados {
+    text-align: center;
+    padding: 40px !important;
+    color: #777;
+    font-style: italic;
+}
+
+/* Responsividade geral */
+@media (max-width: 1200px) {
+    .r-resumo-container {
+        flex-direction: column;
+    }
+    
+    .r-resumo-card {
+        margin: 0 0 15px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .relatorio-container {
+        flex-direction: column;
+    }
+    
+    .relatorio-sidebar {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+    
+    .r-main-content {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+/* Estilos para toast notifications */
+.Toastify__toast-container {
+    width: 320px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+  
+.Toastify__toast {
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    padding: 16px 20px !important;
+    margin-bottom: 1rem !important;
+    align-items: flex-start !important;
+    position: relative;
+    overflow: hidden;
+}
+  
+.Toastify__toast::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+}
+
+.Toastify__toast--success {
+    background: linear-gradient(135deg, #f0fff4, #ffffff) !important;
+    border: 1px solid #38a169 !important;
+}
+
+.Toastify__toast--success::before {
+    background: #38a169;
+}
+
+.Toastify__toast--error {
+    background: linear-gradient(135deg, #fff5f5, #ffffff) !important;
+    border: 1px solid #e53e3e !important;
+}
+
+.Toastify__toast--error::before {
+    background: #e53e3e;
+}
+
+/* === ESTILOS DE IMPRESSÃO === */
+@media print {
+    @page {
+        size: A4 landscape;
+        margin: 12mm;
+    }
+
+    .r-results-toolbar {
+        display: none !important;
+    }
+
+    .r-resumo-container {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        margin-bottom: 12px !important;
+    }
+
+    .r-resumo-card {
+        flex: 0 0 32% !important;
+        padding: 6px !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border-radius: 4px !important;
+        font-size: 0.8em !important;
+    }
+
+    .r-resumo-card h4 {
+        font-size: 0.85em !important;
+        margin-bottom: 4px !important;
+    }
+
+    .r-resumo-card .r-valor {
+        font-size: 1.1em !important;
+        font-weight: 600 !important;
+    }
+
+    .r-tabela-container {
+        overflow-x: visible !important;
+        margin-bottom: 12px !important;
+    }
+
+    .r-tabela-resultado {
+        width: 100% !important;
+        table-layout: fixed !important;
+        font-size: 0.7em !important;
+        border-spacing: 0 !important;
+        border-collapse: collapse !important;
+    }
+
+    .r-tabela-resultado th,
+    .r-tabela-resultado td {
+        padding: 4px 6px !important;
+        word-wrap: break-word !important;
+        white-space: normal !important;
+    }
+
+    .r-tabela-resultado th {
+        border-bottom-width: 1px !important;
+    }
+
+    .r-tabela-resultado td {
+        border-bottom-width: 1px !important;
+    }
+}

@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 from django.db import models
+=======
+#fornecedores/models.py
+from django.db import models
+from empresas.models import Empresa
+>>>>>>> e62255e (Atualizações no projeto)
 
 class Fornecedor(models.Model):
     nome = models.CharField(max_length=255)
@@ -11,5 +17,15 @@ class Fornecedor(models.Model):
     email = models.EmailField(unique=True, blank=True, null=True) # Email opcional
     is_active = models.BooleanField(default=True)
 
+<<<<<<< HEAD
+=======
+    empresa = models.ForeignKey(
+        Empresa,
+        on_delete=models.PROTECT,
+        db_constraint=False,  # desativa a FK no nível do banco
+        db_index=True
+    )
+    
+>>>>>>> e62255e (Atualizações no projeto)
     def __str__(self):
         return self.nome

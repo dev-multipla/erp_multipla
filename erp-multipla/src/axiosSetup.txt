@@ -1,0 +1,16 @@
+// src/axiosSetup.js  (ou dentro de App.js)
+import axios from 'axios'
+import { getToken } from './AuthContext'
+import { getSelectedFilialId } from './BranchContext'
+
+export function configureAxios() {
+  axios.interceptors.request.use(config => {
+    const token = getToken()
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`
+    }
+    const filialId = getSelectedFilialId() || 'all'
+    config.headers['X-Filial-ID'] = filialId
+    return config
+  })
+}

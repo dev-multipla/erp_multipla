@@ -1,14 +1,27 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BounceLoader } from 'react-spinners';
 import Sidebar from './SideBar';
 import './ContractsList.css'; // Importa o CSS específico para ContractsList
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate para redirecionamento
+=======
+// src/components/ContractsList.js
+
+import React, { useState, useEffect } from 'react';
+import api from '../api';                     // importa a instância centralizada
+import { BounceLoader } from 'react-spinners';
+import Sidebar from './SideBar';
+import './ContractsList.css';
+import { useNavigate } from 'react-router-dom';
+import { useCompany } from '../CompanyContext';
+>>>>>>> e62255e (Atualizações no projeto)
 
 const ContractsList = () => {
   const [contracts, setContracts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+<<<<<<< HEAD
   const [selectedContracts, setSelectedContracts] = useState([]); // Estado para armazenar contratos selecionados
   const navigate = useNavigate(); // Hook para redirecionamento
 
@@ -37,12 +50,38 @@ const ContractsList = () => {
       } catch (error) {
         console.error('Fetch error:', error);
         setError(error.message);
+=======
+  const [selectedContracts, setSelectedContracts] = useState([]);
+  const { selectedCompanyId } = useCompany();
+  const navigate = useNavigate();
+  
+
+  useEffect(() => {
+    // só busca contratos depois que o tenant estiver selecionado
+    if (!selectedCompanyId || selectedCompanyId === 'all') {
+      setLoading(false);
+      return;
+    }
+    const fetchContracts = async () => {
+      try {
+        // não precisa buscar token ou headers aqui:
+        const response = await api.get('/api/contratos-list/');
+        if (Array.isArray(response.data)) {
+          setContracts(response.data);
+        } else {
+          throw new Error('Formato de dados inesperado.');
+        }
+      } catch (err) {
+        console.error('Fetch error:', err);
+        setError(err.message || 'Erro ao carregar contratos.');
+>>>>>>> e62255e (Atualizações no projeto)
       } finally {
         setLoading(false);
       }
     };
 
     fetchContracts();
+<<<<<<< HEAD
   }, []);
 
   const handleButtonClick = () => {
@@ -106,11 +145,47 @@ const ContractsList = () => {
   };
   
 
+=======
+    // reexecuta sempre que mudar selectedCompanyId
+  }, [selectedCompanyId]);
+
+  const handleButtonClick = () => {
+    navigate('/cadastro-contrato');
+  };
+
+  const handleCheckboxChange = id => {
+    setSelectedContracts(prev =>
+      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+    );
+  };
+
+  const handleDelete = async () => {
+    try {
+      // chama DELETE para cada contrato através da instância api:
+      await Promise.all(
+        selectedContracts.map(id =>
+          api.delete(`/api/contratos/${id}/soft_delete/`)
+        )
+      );
+      setContracts(prev =>
+        prev.filter(contract => !selectedContracts.includes(contract.id))
+      );
+      setSelectedContracts([]);
+    } catch (err) {
+      console.error('Erro ao excluir contratos:', err);
+      setError('Falha ao excluir contratos.');
+    }
+  };
+>>>>>>> e62255e (Atualizações no projeto)
 
   if (loading) {
     return (
       <div className="loader-container">
+<<<<<<< HEAD
         <BounceLoader color="#009C95" size={50} />
+=======
+        <BounceLoader size={50} />
+>>>>>>> e62255e (Atualizações no projeto)
       </div>
     );
   }
@@ -120,6 +195,7 @@ const ContractsList = () => {
   }
 
   return (
+<<<<<<< HEAD
     <div className="contracts-list-container"> {/* Novo contêiner flex */}
       <Sidebar /> {/* Renderiza a Sidebar */}
       <div className="contracts-list">
@@ -130,6 +206,12 @@ const ContractsList = () => {
             value={""}
             onChange={""}
           />
+=======
+    <div className="contracts-list-container">
+      <Sidebar />
+      <div className="contracts-list">
+        <div className="actions">
+>>>>>>> e62255e (Atualizações no projeto)
           <button className="add-button" onClick={handleButtonClick}>
             Incluir Contrato
           </button>
@@ -139,6 +221,10 @@ const ContractsList = () => {
             </button>
           )}
         </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e62255e (Atualizações no projeto)
         <h1>Contratos Associados</h1>
         {contracts.length > 0 ? (
           <table>
@@ -147,14 +233,23 @@ const ContractsList = () => {
                 <th>Selecionar</th>
                 <th>Número</th>
                 <th>Descrição</th>
+<<<<<<< HEAD
                 <th>Data de Início</th>
                 <th>Data de Fim</th>
                 <th>Tipo</th>
+=======
+                <th>Tipo</th>
+                <th>Status</th>
+>>>>>>> e62255e (Atualizações no projeto)
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
+<<<<<<< HEAD
               {contracts.map((contract) => (
+=======
+              {contracts.map(contract => (
+>>>>>>> e62255e (Atualizações no projeto)
                 <tr key={contract.id}>
                   <td>
                     <input
@@ -162,6 +257,7 @@ const ContractsList = () => {
                       checked={selectedContracts.includes(contract.id)}
                       onChange={() => handleCheckboxChange(contract.id)}
                     />
+<<<<<<< HEAD
 
                   </td>
                   <td>{contract.numero}</td>
@@ -171,6 +267,24 @@ const ContractsList = () => {
                   <td>{getContractType(contract)}</td>
                   <td>
                     <button className="button-custom-edit" onClick={() => navigate(`/editar-contrato/${contract.id}`)}>
+=======
+                  </td>
+                  <td>{contract.numero}</td>
+                  <td>{contract.descricao}</td>
+                  <td>
+                    {contract.tipo === 'cliente'
+                      ? 'Cliente'
+                      : contract.tipo === 'fornecedor'
+                      ? 'Fornecedor'
+                      : 'Desconhecido'}
+                  </td>
+                  <td>{contract.status}</td>
+                  <td>
+                    <button
+                      className="button-custom-edit"
+                      onClick={() => navigate(`/editar-contrato/${contract.id}`)}
+                    >
+>>>>>>> e62255e (Atualizações no projeto)
                       Editar
                     </button>
                   </td>

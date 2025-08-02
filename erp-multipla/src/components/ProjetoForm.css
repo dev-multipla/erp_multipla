@@ -24,6 +24,16 @@
     
 }
 
+<<<<<<< HEAD
+=======
+.checkbox-indeterminado {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+
+>>>>>>> e62255e (Atualizações no projeto)
 /* Container principal do formulário */
 .p-main-content {
     display: flex;

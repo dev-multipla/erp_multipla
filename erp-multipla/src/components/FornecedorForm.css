@@ -111,12 +111,20 @@
 
 /* Botão secundário (limpar) */
 .for-btn-secondary {
+<<<<<<< HEAD
     background-color: #a13333;
+=======
+    background-color: #6c757d;
+>>>>>>> e62255e (Atualizações no projeto)
     color: white;
 }
 
 .for-btn-secondary:hover {
+<<<<<<< HEAD
     background-color: #702727;
+=======
+    background-color: #5c6369;
+>>>>>>> e62255e (Atualizações no projeto)
 }
 
 /* Ajuste para campos alinhados corretamente */

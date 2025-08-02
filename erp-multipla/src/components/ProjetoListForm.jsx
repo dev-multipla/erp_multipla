@@ -1,19 +1,32 @@
 import React, { useState, useEffect } from 'react';
+<<<<<<< HEAD
 import axios from 'axios';
+=======
+import api from '../api';
+>>>>>>> e62255e (Atualizações no projeto)
 import { BounceLoader } from 'react-spinners';
 import Sidebar from './SideBar';
 import './ProjetoListForm.css'; // Importa o CSS específico para ProjectsList
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate para redirecionamento
 import { GrEdit } from "react-icons/gr";
+<<<<<<< HEAD
 
 const ProjectList = () => {
   const [projects, setProjects] = useState([]);
+=======
+import { useCompany } from '../CompanyContext'
+
+const ProjectList = () => {
+  const [projects, setProjects] = useState([]);
+  const { selectedCompanyId } = useCompany(); 
+>>>>>>> e62255e (Atualizações no projeto)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedProjects, setSelectedProjects] = useState([]); // Estado para armazenar projetos selecionados
   const navigate = useNavigate(); // Hook para redirecionamento
 
   useEffect(() => {
+<<<<<<< HEAD
     const fetchProjects = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -38,13 +51,34 @@ const ProjectList = () => {
       } catch (error) {
         console.error('Fetch error:', error);
         setError(error.message);
+=======
+    // não faz nada até que o tenant seja selecionado
+    if (!selectedCompanyId) return;
+
+    const fetchProjects = async () => {
+      setLoading(true);
+      try {
+        const res = await api.get('/api/projeto-list/');
+        if (Array.isArray(res.data)) {
+          setProjects(res.data);
+        } else {
+          throw new Error('Dados em formato inesperado');
+        }
+      } catch (err) {
+        console.error('Fetch error:', err);
+        setError(err.message);
+>>>>>>> e62255e (Atualizações no projeto)
       } finally {
         setLoading(false);
       }
     };
 
     fetchProjects();
+<<<<<<< HEAD
   }, []);
+=======
+  }, [selectedCompanyId]);
+>>>>>>> e62255e (Atualizações no projeto)
 
   const handleButtonClick = () => {
     navigate('/cadastro-projeto'); // Redireciona para a nova página
@@ -64,6 +98,7 @@ const ProjectList = () => {
   // Função para excluir (soft-delete) os projetos selecionados
   const handleDelete = async () => {
     try {
+<<<<<<< HEAD
       const token = localStorage.getItem('token');
       if (!token) {
         throw new Error('Token de acesso não encontrado.');
@@ -80,6 +115,11 @@ const ProjectList = () => {
       );
 
       console.log('Delete response:', response.data);
+=======
+
+      await api.post('/api/projetos/soft-delete/', { ids: selectedProjects });
+
+>>>>>>> e62255e (Atualizações no projeto)
 
       // Filtra os projetos excluídos do estado
       setProjects((prevProjects) =>

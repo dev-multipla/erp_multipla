@@ -7,6 +7,10 @@
     "@emotion/styled": "^11.13.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+<<<<<<< HEAD
+=======
+    "@headlessui/react": "^2.2.2",
+>>>>>>> e62255e (Atualizações no projeto)
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
     "@testing-library/jest-dom": "^5.17.0",
@@ -14,26 +18,50 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.3",
     "babel-jest": "^24.9.0",
+<<<<<<< HEAD
     "formik": "^2.4.6",
     "jest": "^29.7.0",
     "joi": "^17.13.3",
+=======
+    "file-saver": "^2.0.5",
+    "formik": "^2.4.6",
+    "html2canvas": "^1.4.1",
+    "jest": "^29.7.0",
+    "joi": "^17.13.3",
+    "jspdf": "^3.0.1",
+>>>>>>> e62255e (Atualizações no projeto)
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.476.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18.3.1",
+<<<<<<< HEAD
+=======
+    "react-hot-toast": "^2.5.2",
+>>>>>>> e62255e (Atualizações no projeto)
     "react-icons": "^5.2.1",
     "react-input-mask": "^2.0.4",
     "react-loader-spinner": "^6.1.6",
     "react-modal": "^3.16.1",
+<<<<<<< HEAD
+=======
+    "react-number-format": "^5.4.3",
+>>>>>>> e62255e (Atualizações no projeto)
     "react-router-dom": "^6.26.0",
     "react-scripts": "^5.0.1",
     "react-select": "^5.8.0",
     "react-spinners": "^0.14.1",
     "react-table": "^7.8.0",
+<<<<<<< HEAD
     "react-toastify": "^10.0.5",
     "web-vitals": "^2.1.4",
+=======
+    "react-to-print": "^3.1.0",
+    "react-toastify": "^10.0.5",
+    "web-vitals": "^2.1.4",
+    "xlsx": "^0.18.5",
+>>>>>>> e62255e (Atualizações no projeto)
     "yup": "^1.4.0"
   },
   "scripts": {
@@ -61,7 +89,11 @@
     ]
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@babel/plugin-proposal-private-property-in-object": "^7.18.6",
     "eslint-plugin-jest": "^28.8.3"
+=======
+    "@babel/plugin-proposal-private-property-in-object": "^7.18.6"
+>>>>>>> e62255e (Atualizações no projeto)
   }
 }

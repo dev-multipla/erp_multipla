@@ -1,0 +1,57 @@
+.notification-bell-wrapper {
+    position: relative;
+    margin-right: 16px;
+  }
+  
+  .notification-bell-icon {
+    cursor: pointer;
+    position: relative; /* Para posicionar o badge */
+  }
+  
+  .bell-icon {
+    color: black; /* Defina a cor desejada para o ícone */
+    font-size: 20px; /* Garante que o tamanho seja aplicado */
+  }
+  
+  .notification-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+  }
+  
+  .notification-tray {
+    position: absolute;
+    top: 100%; /* Abaixo do ícone */
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10; /* Garante que fique acima de outros elementos */
+    min-width: 200px; /* Ajuste conforme necessário */
+  }
+  
+  .notification-empty {
+    padding: 10px;
+    text-align: center;
+    color: #777;
+  }
+  
+  .notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+  }
+  
+  .notification-item:last-child {
+    border-bottom: none;
+  }
+  
+  .notification-item strong {
+    font-weight: bold;
+  }

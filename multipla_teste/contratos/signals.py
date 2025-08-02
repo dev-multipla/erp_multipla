@@ -21,9 +21,17 @@ logger.addHandler(handler)
 
 @receiver(post_save, sender=Contrato)
 def gerar_projecoes_faturamento(sender, instance, created, **kwargs):
+<<<<<<< HEAD
     if created and instance.confirmado:
         try:
             instance.gerar_projecoes(save=True)
+=======
+     if created and instance.confirmado:
+        try:
+            # Se data_termino não estiver definido, utiliza um horizonte padrão (ex: 12 meses)
+            horizonte = 12 if instance.data_termino is None else None
+            instance.gerar_projecoes(save=True, horizonte_projecao=horizonte)
+>>>>>>> e62255e (Atualizações no projeto)
         except Exception as e:
             logger.error(f"Erro ao gerar projeções para contrato {instance.id}: {str(e)}")
 

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
+<<<<<<< HEAD
 import axios from 'axios';
+=======
+import api from '../api';
+>>>>>>> e62255e (Atualizações no projeto)
 import { useAuth } from '../AuthContext';
 import { useParams } from 'react-router-dom'; // Para obter o ID do cliente da URL
 import './ClientForm.css';
@@ -10,7 +14,11 @@ import InputMask from 'react-input-mask';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+<<<<<<< HEAD
 const ProjetoForm = () => {
+=======
+const ClientForm = () => {
+>>>>>>> e62255e (Atualizações no projeto)
     const { token } = useAuth();
     const { id } = useParams(); // Obtém o ID do cliente da URL
     const [formData, setFormData] = useState({
@@ -25,6 +33,7 @@ const ProjetoForm = () => {
     });
 
     useEffect(() => {
+<<<<<<< HEAD
         if (id) {
             // Se houver um ID, estamos em modo de edição
             axios.get(`http://127.0.0.1:8000/api/clientes/${id}/`, {
@@ -39,6 +48,20 @@ const ProjetoForm = () => {
             });
         }
     }, [id, token]);
+=======
+    if (!id) return;
+
+    api
+        .get(`/api/clientes/${id}/`)
+        .then(response => {
+        setFormData(response.data);
+        })
+        .catch(error => {
+        console.error('Erro ao carregar dados do cliente', error);
+        toast.error('Erro ao carregar dados do cliente');
+        });
+    }, [id]);
+>>>>>>> e62255e (Atualizações no projeto)
 
     const handleChange = (e) => {
         setFormData({
@@ -47,6 +70,7 @@ const ProjetoForm = () => {
         });
     };
 
+<<<<<<< HEAD
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -97,6 +121,82 @@ const ProjetoForm = () => {
 
     return (
         <div className="cliente-form-container">
+=======
+    const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // Validação de campos obrigatórios
+  if (
+    !formData.nome ||
+    !formData.cpf_cnpj ||
+    !formData.endereco ||
+    !formData.cidade ||
+    !formData.estado ||
+    !formData.cep ||
+    !formData.telefone ||
+    !formData.email
+  ) {
+    toast.error('Por favor, preencha todos os campos obrigatórios.');
+    return;
+  }
+
+  try {
+    if (id) {
+      // Atualiza cliente existente
+      await api.put(`/api/clientes/${id}/`, formData);
+      toast.success('Cliente atualizado com sucesso!');
+    } else {
+      // Cria novo cliente
+      await api.post('/api/clientes/', formData);
+      toast.success('Novo cliente cadastrado com sucesso!');
+    }
+
+    // Reseta o formulário
+    setFormData({
+      nome: '',
+      cpf_cnpj: '',
+      endereco: '',
+      cidade: '',
+      estado: '',
+      cep: '',
+      telefone: '',
+      email: ''
+    });
+  } catch (error) {
+    console.error('Erro ao cadastrar/atualizar cliente', error);
+    const data = error.response?.data;
+    if (data) {
+      if (data.cpf_cnpj) {
+        toast.error(`CPF/CNPJ: ${data.cpf_cnpj.join(', ')}`);
+      }
+      if (data.email) {
+        toast.error(`Email: ${data.email.join(', ')}`);
+      }
+      // outras possíveis mensagens de erro
+    } else {
+      toast.error('Erro ao cadastrar/atualizar cliente');
+    }
+  }
+};
+
+
+    return (
+        <div className="cliente-form-container">
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                className="custom-toast-container"
+                toastClassName="custom-toast"
+                progressClassName="custom-progress"
+            />
+>>>>>>> e62255e (Atualizações no projeto)
             <SideBar />
             <main className="c-main-content">
                 <div className="c-cliente-form-container">
@@ -104,7 +204,11 @@ const ProjetoForm = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="c-form-row">
                             <div className="c-form-group">
+<<<<<<< HEAD
                                 <label>Nome do Fornecedor:</label>
+=======
+                                <label>Nome do Cliete:</label>
+>>>>>>> e62255e (Atualizações no projeto)
                                 <input
                                     type="text"
                                     name="nome"
@@ -230,7 +334,11 @@ const ProjetoForm = () => {
                         </div>
                         
                         <div className="c-form-actions">
+<<<<<<< HEAD
                             <button type="submit" className="c-btn-primary">Cadastrar Cliente</button>
+=======
+                            
+>>>>>>> e62255e (Atualizações no projeto)
                             <button type="reset" className="c-btn-secondary" onClick={() => setFormData({
                                 nome: '',
                                 cpf_cnpj: '',
@@ -241,6 +349,10 @@ const ProjetoForm = () => {
                                 telefone: '',
                                 email: ''
                             })}>Limpar</button>
+<<<<<<< HEAD
+=======
+                            <button type="submit" className="c-btn-primary">Cadastrar Cliente</button>
+>>>>>>> e62255e (Atualizações no projeto)
                         </div>
                     </form>
                 </div>
@@ -259,4 +371,8 @@ const ProjetoForm = () => {
     );
 };
 
+<<<<<<< HEAD
 export default ProjetoForm;
+=======
+export default ClientForm;
+>>>>>>> e62255e (Atualizações no projeto)

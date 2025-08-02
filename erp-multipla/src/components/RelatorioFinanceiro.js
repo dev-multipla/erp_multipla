@@ -26,7 +26,11 @@ const RelatorioFinanceiro = () => {
         Authorization: `Bearer ${token}`,
       };
 
+<<<<<<< HEAD
       const response = await axios.get('http://127.0.0.1:8000/api/relatorio-financeiro/gerar_relatorio/', {
+=======
+      const response = await axios.get('https://financeiro.multipla.tec.br/api/relatorio-financeiro/gerar_relatorio/', {
+>>>>>>> e62255e (Atualizações no projeto)
         params: { mes, ano },
         headers
       });

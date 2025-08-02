@@ -1,4 +1,8 @@
 from django.db import models
+<<<<<<< HEAD
+=======
+from empresas.models import Empresa
+>>>>>>> e62255e (Atualizações no projeto)
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=255)
@@ -10,6 +14,18 @@ class Cliente(models.Model):
     telefone = models.CharField(max_length=15)
     email = models.EmailField(unique=True, blank=True, null=True)
     is_active = models.BooleanField(default=True)  # Campo para soft delete
+<<<<<<< HEAD
 
     def __str__(self):
         return self.nome
+=======
+    empresa = models.ForeignKey(
+       Empresa,
+       on_delete=models.PROTECT,
+       db_constraint=False,    # <— desativa o FK no banco
+       db_index=True
+   )
+    
+    def __str__(self):
+        return self.nome
+>>>>>>> e62255e (Atualizações no projeto)

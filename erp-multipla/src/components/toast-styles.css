@@ -1,0 +1,118 @@
+/* toast-styles.css */
+
+/* Container dos toasts */
+.react-hot-toast {
+  z-index: 9999;
+}
+
+/* Animações customizadas */
+@keyframes toast-enter {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-exit {
+  0% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Estilo base do toast */
+[data-rehot="true"] {
+  animation: toast-enter 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
+  transition: all 0.2s ease;
+}
+
+[data-rehot="false"] {
+  animation: toast-exit 0.4s cubic-bezier(0.06, 0.71, 0.55, 1) forwards;
+}
+
+/* Hover effect */
+[data-rehot="true"]:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Customização para toasts de sucesso */
+.toast-success {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+  border-left: 4px solid #22c55e !important;
+}
+
+/* Customização para toasts de erro */
+.toast-error {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%) !important;
+  border-left: 4px solid #ef4444 !important;
+}
+
+/* Customização para toasts de loading */
+.toast-loading {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  border-left: 4px solid #3b82f6 !important;
+}
+
+/* Estilo do ícone de loading customizado */
+.toast-loading .toast-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+  [data-rehot="true"] {
+    max-width: calc(100vw - 32px) !important;
+    min-width: unset !important;
+    margin: 0 16px;
+  }
+  
+  .react-hot-toast > div {
+    left: 16px !important;
+    right: 16px !important;
+    transform: none !important;
+  }
+}
+
+/* Estilo para toasts de informação (se necessário) */
+.toast-info {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+  border-left: 4px solid #3b82f6 !important;
+  color: #1e40af !important;
+}
+
+/* Estilo para toasts de aviso */
+.toast-warning {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
+  border-left: 4px solid #f59e0b !important;
+  color: #92400e !important;
+}
+
+/* Customização do texto */
+[data-rehot="true"] > div {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  line-height: 1.5;
+}
+
+/* Customização para textos longos */
+[data-rehot="true"] {
+  word-wrap: break-word;
+  word-break: break-word;
+}

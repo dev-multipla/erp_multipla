@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#empresas/models.py
+>>>>>>> e62255e (Atualizações no projeto)
 from django.db import models
 
 class Empresa(models.Model):

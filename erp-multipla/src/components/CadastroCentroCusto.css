@@ -65,6 +65,10 @@
   display: flex;
   gap: 15px;
   margin-top: 20px;
+<<<<<<< HEAD
+=======
+  justify-content: flex-end;
+>>>>>>> e62255e (Atualizações no projeto)
 }
 
 .icon-button {

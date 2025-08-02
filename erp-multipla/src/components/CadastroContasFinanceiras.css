@@ -28,6 +28,7 @@
 }
 
 .cadastro-cp-header h1 {
+<<<<<<< HEAD
   font-size: 24px;/* Layout principal que usa flexbox */
   .cadastro-layout {
     display: flex;
@@ -170,6 +171,9 @@
     bottom: -40px;
   }
   
+=======
+  font-size: 24px;
+>>>>>>> e62255e (Atualizações no projeto)
 }
 
 .cadastro-user-info {
@@ -217,6 +221,7 @@
   display: flex;
   gap: 15px;
   margin-top: 20px;
+<<<<<<< HEAD
 }
 
 .icon-button {
@@ -229,6 +234,21 @@
   justify-content: center;
   width: 40px !important;
   height: 40px !important;
+=======
+  justify-content: flex-end;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+>>>>>>> e62255e (Atualizações no projeto)
   position: relative;
 }
 
@@ -281,6 +301,34 @@
   bottom: -40px;
 }
 
+<<<<<<< HEAD
+=======
+.cadastro-error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Filtros */
+.filtros-container {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.filtro-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 300px;
+}
+
+.filtro-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+>>>>>>> e62255e (Atualizações no projeto)
 /* Lista de contas financeiras */
 .contas-lista {
   padding: 20px;
@@ -312,6 +360,12 @@
   box-shadow: 0px 5px 20px rgba(148, 146, 146, 0.1);
   color: #34495e;
   font-size: 14px;
+<<<<<<< HEAD
+=======
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+>>>>>>> e62255e (Atualizações no projeto)
 }
 
 .conta-item p {
@@ -353,3 +407,14 @@
 .icon.delete-icon:hover {
   background-color: #ffebee;
 }
+<<<<<<< HEAD
+=======
+
+/* Loader */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+>>>>>>> e62255e (Atualizações no projeto)

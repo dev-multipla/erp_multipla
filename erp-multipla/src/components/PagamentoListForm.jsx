@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
+<<<<<<< HEAD
 import axios from 'axios';
+=======
+import api from '../api';
+>>>>>>> e62255e (Atualizações no projeto)
 import { BounceLoader } from 'react-spinners';
 import Sidebar from './SideBar';
 import './PagamentoListForm.css'; // Importa o CSS específico para ContractsList
@@ -15,6 +19,7 @@ const PagamentoList = () => {
   useEffect(() => {
     const fetchPagamentos = async () => {
       try {
+<<<<<<< HEAD
         const token = localStorage.getItem('token');
         if (!token) {
           throw new Error('Token de acesso não encontrado.');
@@ -25,6 +30,9 @@ const PagamentoList = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+=======
+        const response = await api.get('/api/formas-pagamento/');
+>>>>>>> e62255e (Atualizações no projeto)
 
         console.log('Response:', response.data); // Verifica a resposta
 
@@ -63,6 +71,7 @@ const PagamentoList = () => {
   // Função para excluir (soft-delete) os pagamentos selecionados
   const handleDelete = async () => {
     try {
+<<<<<<< HEAD
       const token = localStorage.getItem('token');
       if (!token) {
         throw new Error('Token de acesso não encontrado.');
@@ -79,6 +88,10 @@ const PagamentoList = () => {
       );
 
       console.log('Delete response:', response.data);
+=======
+      await api.post('/api/formas-pagamento/soft-delete/', { ids: selectedPagamentos });
+
+>>>>>>> e62255e (Atualizações no projeto)
 
       // Filtra os pagamentos excluídos do estado
       setPagamentos((prevPagamentos) =>

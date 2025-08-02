@@ -1,15 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../AuthContext';
+<<<<<<< HEAD
 import { Search, RefreshCw, ArrowLeft, Calendar, Filter, ChevronDown } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+=======
+import {
+  Search,
+  RefreshCw,
+  ArrowLeft,
+  Calendar,
+  Filter,
+  ChevronDown,
+  X
+} from 'lucide-react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './FinancialManagement.css';
+import api from '../api';
+import SideBar from './SideBar';
+>>>>>>> e62255e (Atualizações no projeto)
 
 const FinancialManagement = () => {
   const [loading, setLoading] = useState(false);
   const [accounts, setAccounts] = useState([]);
   const [contracts, setContracts] = useState({});
   const [filters, setFilters] = useState({
+<<<<<<< HEAD
     tipo: 'receber',  // Alterado para valores da API
+=======
+    tipo: 'receber',
+>>>>>>> e62255e (Atualizações no projeto)
     status: 'pendente',
     data_inicio: '',
     data_fim: '',
@@ -17,12 +38,24 @@ const FinancialManagement = () => {
   const [error, setError] = useState(null);
   const { token } = useAuth();
 
+<<<<<<< HEAD
+=======
+  const [confirmationModal, setConfirmationModal] = useState({
+    visible: false,
+    accountId: null,
+    action: null,
+    confirmationDate: new Date().toISOString().split('T')[0],
+    account: null
+  });
+
+>>>>>>> e62255e (Atualizações no projeto)
   const showNotification = (message, type) => {
     toast[type](message, { position: 'top-right', autoClose: 3000 });
   };
 
   const fetchContracts = async () => {
     try {
+<<<<<<< HEAD
       const response = await fetch('http://localhost:8000/api/contratos-list/', {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -39,10 +72,24 @@ const FinancialManagement = () => {
     }
   };
   
+=======
+      const response = await api.get('/api/contratos-list/');
+      const map = response.data.reduce((acc, c) => {
+        acc[c.id] = c;
+        return acc;
+      }, {});
+      setContracts(map);
+    } catch (err) {
+      console.error(err);
+      showNotification('Erro ao carregar contratos', 'error');
+    }
+  };
+>>>>>>> e62255e (Atualizações no projeto)
 
   const fetchAccounts = async () => {
     setLoading(true);
     setError(null);
+<<<<<<< HEAD
   
     try {
       // Garantir valores padrão para datas vazias
@@ -70,11 +117,42 @@ const FinancialManagement = () => {
       console.error('Erro ao buscar contas:', error);
       setError(error.message);
       showNotification(`Erro ao carregar contas: ${error.message}`, 'error');
+=======
+    try {
+      const { data } = await api.get('/api/contas-consolidadas/', {
+        params: {
+          tipo: filters.tipo,
+          status: filters.status,
+          data_inicio: filters.data_inicio || undefined,
+          data_fim: filters.data_fim || undefined
+        }
+      });
+      setAccounts(data.map(acc => {
+        const contratoData = acc.contrato || acc.detalhes.contrato;
+        const isAvulsa = typeof contratoData === 'string';
+        return {
+          id: acc.id,
+          contrato: typeof contratoData === 'object' ? contratoData.id : contratoData,
+          valor: acc.valor_total,
+          vencimento: acc.data_vencimento,
+          status: acc.status,
+          tipo: acc.tipo,
+          detalhes: acc.detalhes,
+          isAvulsa
+        };
+      }));
+      showNotification('Contas carregadas com sucesso!', 'success');
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+      showNotification(`Erro ao carregar contas: ${err.message}`, 'error');
+>>>>>>> e62255e (Atualizações no projeto)
     } finally {
       setLoading(false);
     }
   };
 
+<<<<<<< HEAD
   const processApiData = (data) => {
     return data.map(account => {
       // Verifica se a propriedade "contrato" existe no nível superior; se não, busca em "detalhes"
@@ -96,10 +174,43 @@ const FinancialManagement = () => {
   const handleStatusUpdate = async (accountId, action) => {
     setLoading(true);
   
+=======
+  const openConfirmationModal = (accountId, action, account) => {
+    setConfirmationModal({
+      visible: true,
+      accountId,
+      action,
+      confirmationDate: new Date().toISOString().split('T')[0],
+      account
+    });
+  };
+
+  const closeConfirmationModal = () => {
+    setConfirmationModal({
+      visible: false,
+      accountId: null,
+      action: null,
+      confirmationDate: new Date().toISOString().split('T')[0],
+      account: null
+    });
+  };
+
+  const handleDateChange = e => {
+    setConfirmationModal(m => ({
+      ...m,
+      confirmationDate: e.target.value
+    }));
+  };
+
+  const confirmOperation = async () => {
+    setLoading(true);
+    const { accountId, action, confirmationDate, account } = confirmationModal;
+>>>>>>> e62255e (Atualizações no projeto)
     const statusMap = {
       baixar: filters.tipo === 'receber' ? 'recebido' : 'pago',
       estornar: 'estornado'
     };
+<<<<<<< HEAD
 
     try {
       const response = await fetch(
@@ -126,11 +237,43 @@ const FinancialManagement = () => {
     } catch (error) {
       console.error('Erro ao atualizar status:', error);
       showNotification(`Erro: ${error.message}`, 'error');
+=======
+    const novoStatus = statusMap[action];
+
+    try {
+      if (account.isAvulsa) {
+        const urlBase = filters.tipo === 'pagar'
+          ? `/api/contas-a-pagar-avulso/${accountId}/`
+          : `/api/contas-a-receber-avulso/${accountId}/`;
+        const payload = filters.tipo === 'pagar'
+          ? { status: novoStatus, data_pagamento: confirmationDate }
+          : { status: novoStatus, data_recebimento: confirmationDate };
+        await api.patch(urlBase, payload);
+      } else {
+        await api.patch(
+          `/api/contas-consolidadas/${accountId}/atualizar-status/`,
+          { status: novoStatus, data_confirmacao: confirmationDate },
+          { params: { tipo: filters.tipo } }
+        );
+      }
+      showNotification(
+        action === 'baixar'
+          ? 'Status atualizado com sucesso!'
+          : 'Estorno realizado com sucesso!',
+        'success'
+      );
+      closeConfirmationModal();
+      fetchAccounts();
+    } catch (err) {
+      console.error(err);
+      showNotification(`Erro: ${err.message}`, 'error');
+>>>>>>> e62255e (Atualizações no projeto)
     } finally {
       setLoading(false);
     }
   };
 
+<<<<<<< HEAD
   useEffect(() => {
     fetchAccounts();
   }, [filters]);
@@ -208,10 +351,70 @@ const FinancialManagement = () => {
                   borderRadius: '4px',
                   appearance: 'none'
                 }}
+=======
+  useEffect(() => { fetchAccounts(); }, [filters]);
+  useEffect(() => { fetchContracts(); }, []);
+
+  const formatCurrency = v =>
+    new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+      .format(v);
+  const formatDate = d =>
+    new Date(d).toLocaleDateString('pt-BR');
+
+  return (
+     <div className="app-layout">
+      <SideBar />
+
+      <div className="fm-container">
+
+      <ToastContainer />
+      
+      {/* Header */}
+      <div className="fm-header">
+        <div className="fm-nav">
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <button
+              onClick={() => window.history.back()}
+              className="fm-nav-button"
+            >
+              <ArrowLeft />
+            </button>
+            <h1 className="fm-title">Gerenciamento Financeiro</h1>
+          </div>
+          <button
+            className="btn btn-search"
+            onClick={fetchAccounts}
+            disabled={loading}
+          >
+            {loading
+              ? <><RefreshCw className="animate-spin" /> Processando...</>
+              : <><Search /> Buscar</>
+            }
+          </button>
+        </div>
+      </div>
+
+      {/* Filtros */}
+      <div className="filters-section">
+        <div className="filters-header">
+          <Filter className="filter-icon" />
+          <span className="filters-label">Filtros</span>
+        </div>
+        <div className="filters-group">
+          {/** Tipo */}
+          <div className="filter-item">
+            <label className="filter-label">Tipo de Movimentação</label>
+            <div className="select-container">
+              <select
+                className="filter-select"
+                value={filters.tipo}
+                onChange={e => setFilters(f => ({ ...f, tipo: e.target.value }))}
+>>>>>>> e62255e (Atualizações no projeto)
               >
                 <option value="receber">Receitas</option>
                 <option value="pagar">Despesas</option>
               </select>
+<<<<<<< HEAD
               <ChevronDown
                 style={{
                   position: 'absolute',
@@ -339,10 +542,66 @@ const FinancialManagement = () => {
             <div className="p-4 bg-red-50 text-red-700 rounded-md">
               {error}
             </div>
+=======
+              <ChevronDown className="select-icon" />
+            </div>
+          </div>
+
+          {/** Status */}
+          <div className="filter-item">
+            <label className="filter-label">Status</label>
+            <div className="select-container">
+              <select
+                className="filter-select"
+                value={filters.status}
+                onChange={e => setFilters(f => ({ ...f, status: e.target.value }))}
+              >
+                <option value="pendente">Pendentes</option>
+                <option value="pago">Pagas</option>
+                <option value="recebido">Recebidas</option>
+                <option value="estornado">Estornadas</option>
+              </select>
+              <ChevronDown className="select-icon" />
+            </div>
+          </div>
+
+          {/** Data Inicial */}
+          <div className="filter-item">
+            <label className="filter-label">Data Inicial</label>
+            <div className="select-container">
+              <input
+                type="date"
+                className="filter-date"
+                value={filters.data_inicio}
+                onChange={e => setFilters(f => ({ ...f, data_inicio: e.target.value }))}
+              />
+              <Calendar className="select-icon" />
+            </div>
+          </div>
+
+          {/** Data Final */}
+          <div className="filter-item">
+            <label className="filter-label">Data Final</label>
+            <div className="select-container">
+              <input
+                type="date"
+                className="filter-date"
+                value={filters.data_fim}
+                onChange={e => setFilters(f => ({ ...f, data_fim: e.target.value }))}
+              />
+              <Calendar className="select-icon" />
+            </div>
+          </div>
+        </div>
+        {error && (
+          <div style={{ marginTop: '16px', color: '#DC2626' }}>
+            {error}
+>>>>>>> e62255e (Atualizações no projeto)
           </div>
         )}
       </div>
 
+<<<<<<< HEAD
       {/* Table Section */}
       <div className="bg-white rounded-lg shadow-sm overflow-hidden">
         {accounts.length > 0 ? (
@@ -410,3 +669,117 @@ const FinancialManagement = () => {
 };
 
 export default FinancialManagement;
+=======
+      {/* Tabela */}
+      <div className="table-container">
+        {accounts.length ? (
+          <table className="financial-table">
+            <thead>
+              <tr>
+                <th>Contrato</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Vencimento</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {accounts.map(acc => {
+                const isAvulsa = acc.isAvulsa;
+                const contratoInfo = isAvulsa
+                  ? acc.contrato
+                  : contracts[acc.contrato]?.numero || 'N/A';
+                const descricaoInfo = isAvulsa
+                  ? (acc.detalhes?.descricao || 'Sem descrição')
+                  : (contracts[acc.contrato]?.descricao || 'Sem descrição');
+                return (
+                  <tr key={acc.id}>
+                    <td>{contratoInfo}</td>
+                    <td>{descricaoInfo}</td>
+                    <td>{formatCurrency(acc.valor)}</td>
+                    <td>{formatDate(acc.vencimento)}</td>
+                    <td>
+                      <span className={`badge badge-${acc.status}`}>
+                        {acc.status}
+                      </span>
+                    </td>
+                    <td className="table-actions">
+                      <button
+                        onClick={() => openConfirmationModal(acc.id, 'baixar', acc)}
+                        className="action-baixar"
+                        disabled={!['pendente','estornado'].includes(acc.status)}
+                      >Baixar</button>
+                      <button
+                        onClick={() => openConfirmationModal(acc.id, 'estornar', acc)}
+                        className="action-estornar"
+                        disabled={!['pago','recebido'].includes(acc.status)}
+                      >Estornar</button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <div className="no-data">
+            {loading ? 'Carregando...' : 'Nenhuma conta encontrada.'}
+          </div>
+        )}
+      </div>
+
+      {/* Modal */}
+      {confirmationModal.visible && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <div className="modal-header">
+              <h3 className="modal-title">
+                {confirmationModal.action === 'baixar'
+                  ? 'Confirmar Baixa'
+                  : 'Confirmar Estorno'}
+              </h3>
+              <button
+                onClick={closeConfirmationModal}
+                className="modal-close"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            <div className="modal-body">
+              <label className="modal-label">
+                {confirmationModal.action === 'baixar'
+                  ? (filters.tipo === 'receber'
+                      ? 'Data de Recebimento'
+                      : 'Data de Pagamento')
+                  : 'Data de Estorno'}
+              </label>
+              <input
+                type="date"
+                className="modal-input"
+                value={confirmationModal.confirmationDate}
+                onChange={handleDateChange}
+              />
+            </div>
+            <div className="modal-footer">
+              <button
+                onClick={closeConfirmationModal}
+                className="modal-btn cancel"
+              >Cancelar</button>
+              <button
+                onClick={confirmOperation}
+                className="modal-btn confirm"
+                disabled={loading}
+              >
+                {loading ? 'Processando...' : 'Confirmar'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+    </div>
+  );
+};
+
+export default FinancialManagement;
+>>>>>>> e62255e (Atualizações no projeto)

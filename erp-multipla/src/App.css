@@ -7,6 +7,29 @@
   pointer-events: none;
 }
 
+<<<<<<< HEAD
+=======
+/* Container flex: sidebar + conteúdo */
+.app-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* ❌ Isso duplicaria */
+}
+
+/* Área principal: header + conteúdo de página */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* ✅ Correto */
+}
+
+/* Conteúdo interno rolável */
+.page-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+>>>>>>> e62255e (Atualizações no projeto)
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

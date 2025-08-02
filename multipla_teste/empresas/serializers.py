@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#empresas/serializers.pý
+>>>>>>> e62255e (Atualizações no projeto)
 from rest_framework import serializers
 from .models import Empresa, Filial
 

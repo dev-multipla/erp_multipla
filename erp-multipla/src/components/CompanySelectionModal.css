@@ -1,0 +1,64 @@
+:root {
+  --primary-color: #23395d;
+  --secondary-color: #406882;
+  --background-color: #ffffff;
+  --overlay-color: rgba(0, 0, 0, 0.5);
+  --text-color: #333333;
+  --border-color: #cccccc;
+  --radius: 8px;
+}
+
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--overlay-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Garante que fique acima de outros elementos */
+}
+
+.custom-modal-content {
+  position: relative;
+  width: 300px;
+  max-width: 90%;
+  padding: 1.5rem 2rem;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+  outline: none;
+  z-index: 1001; /* Um pouco acima do overlay se necessário */
+}
+
+.custom-modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.custom-modal-content select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  margin-top: 1rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'10'%20height%3D'7'%20viewBox%3D'0%200%2010%207'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M1%200l4%205l4-5'%20stroke%3D'%2333959d'%20stroke-width%3D'1.5'%20fill%3D'none'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 10px 7px;
+}
+
+.custom-modal-content select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}

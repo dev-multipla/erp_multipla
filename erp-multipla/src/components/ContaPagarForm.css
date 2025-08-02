@@ -166,6 +166,7 @@
   margin-bottom: 10px;
 }
 
+<<<<<<< HEAD
 /* Estilização do Toast (opcional) */
 .Toastify__toast {
   border-radius: 8px !important;
@@ -176,4 +177,160 @@
 }
 .Toastify__toast--error {
   background: #e03131 !important;
+=======
+/* datepicker react */
+.react-datepicker-wrapper {
+  display: block;
+  width: 100%;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.input-justificativa-cp {
+  width: 100%; /* Ocupa 100% da largura do contêiner */
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+  font-family: inherit; /* Usa a mesma fonte do restante do formulário */
+  resize: vertical; /* Permite redimensionar verticalmente */
+  
+}
+
+.Toastify__toast-container {
+  width: 320px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.Toastify__toast {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  padding: 16px 20px !important;
+  margin-bottom: 1rem !important;
+  align-items: flex-start !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.Toastify__toast::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+}
+
+.Toastify__toast--success {
+  background: linear-gradient(135deg, #f0fff4, #ffffff) !important;
+  border: 1px solid #38a169 !important;
+}
+
+.Toastify__toast--success::before {
+  background: #38a169;
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, #fff5f5, #ffffff) !important;
+  border: 1px solid #e53e3e !important;
+}
+
+.Toastify__toast--error::before {
+  background: #e53e3e;
+}
+
+.Toastify__toast-body {
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+}
+
+.Toastify__toast-icon {
+  width: 24px !important;
+  height: 24px !important;
+  margin-right: 0 !important;
+  flex-shrink: 0;
+}
+
+.Toastify__toast-message {
+  color: #2d3748 !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  line-height: 1.5;
+  margin: 0 !important;
+}
+
+/* Ícones personalizados usando pseudo-elementos */
+.Toastify__toast--success .Toastify__toast-icon::after {
+  content: '✓';
+  color: #38a169;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Toastify__toast--error .Toastify__toast-icon::after {
+  content: '✕';
+  color: #e53e3e;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Toastify__progress-bar {
+  height: 3px !important;
+}
+
+.Toastify__progress-bar--success {
+  background: #38a169 !important;
+}
+
+.Toastify__progress-bar--error {
+  background: #e53e3e !important;
+}
+
+/* Animação personalizada */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.Toastify__slide-enter {
+  animation: slideIn 0.3s ease-out;
+}
+
+.Toastify__slide-exit {
+  animation: slideOut 0.3s ease-in;
+>>>>>>> e62255e (Atualizações no projeto)
 }

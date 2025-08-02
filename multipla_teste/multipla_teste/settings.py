@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import logging
+<<<<<<< HEAD
+=======
+import os
+from corsheaders.defaults import default_headers
+>>>>>>> e62255e (Atualizações no projeto)
 
 
 logger = logging.getLogger(__name__)
@@ -29,7 +34,17 @@ SECRET_KEY = 'django-insecure-$-cdbts1n0p1!d%qy^a#8=c*n%0f#26mvmw^3ivglzzq4sx)df
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = []
+=======
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'testserver',
+    'financeiro.multipla.tec.br',
+    '5.78.120.45',
+]
+>>>>>>> e62255e (Atualizações no projeto)
 
 
 # Application definition
@@ -43,6 +58,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
+<<<<<<< HEAD
+=======
+    'django_extensions',
+    'django_filters',
+>>>>>>> e62255e (Atualizações no projeto)
     'corsheaders',
     'fornecedores',
     'clientes',
@@ -51,12 +71,30 @@ INSTALLED_APPS = [
     'pagamentos',
     'contas_pagar',
     'usuarios',
+<<<<<<< HEAD
     'empresas',
     'financeiro',
 ]
 
 REST_FRAMEWORK = {
     
+=======
+    #'empresas',
+    'empresas.apps.EmpresasConfig',
+    'financeiro',
+    'funcionarios',
+    'relatorios',
+    'notifications',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+    ],
+
+>>>>>>> e62255e (Atualizações no projeto)
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         
@@ -64,16 +102,26 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+<<<<<<< HEAD
     'django.middleware.security.SecurityMiddleware',
+=======
+    'multipla_teste.tenant_middleware.TenantMiddleware',
+
+    'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+>>>>>>> e62255e (Atualizações no projeto)
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+<<<<<<< HEAD
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     #'multipla_teste.middleware.TokenValidationMiddleware',
+=======
+>>>>>>> e62255e (Atualizações no projeto)
 ]
 
 logger.info("Middlewares configurados: %s", MIDDLEWARE)
@@ -96,11 +144,29 @@ TEMPLATES = [
     },
 ]
 
+<<<<<<< HEAD
+=======
+DATABASE_ROUTERS = [
+  'multipla_teste.tenant_router.TenantRouter',
+]
+
+
+>>>>>>> e62255e (Atualizações no projeto)
 WSGI_APPLICATION = 'multipla_teste.wsgi.application'
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  # Substitua pela porta
+<<<<<<< HEAD
     'http://192.168.0.71:3000'
+=======
+    'http://192.168.0.71:3000',
+    'https://financeiro.multipla.tec.br',
+]
+
+# Permite o header X-Filial-ID na preflight response
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "x-company-id",
+>>>>>>> e62255e (Atualizações no projeto)
 ]
 
 SIMPLE_JWT = {
@@ -108,17 +174,31 @@ SIMPLE_JWT = {
     # ... outras configurações
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e62255e (Atualizações no projeto)
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+<<<<<<< HEAD
         'NAME': 'multipla_financeiro',
         'USER': 'multipla',
         'PASSWORD': 'multipla',
         'HOST': 'localhost',  # Ou o endereço do seu servidor PostgreSQL
         'PORT': '5432',    # Porta padrão do PostgreSQL
+=======
+        'NAME': 'multipla_financeiro_novo',
+        'USER': 'multipla',
+        'PASSWORD': 'multipla',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        # Mantém configurações simples e compatíveis
+        'CONN_MAX_AGE': 60, 
+>>>>>>> e62255e (Atualizações no projeto)
     }
 }
 
@@ -142,7 +222,18 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+<<<<<<< HEAD
 
+=======
+#upload handle
+# Configurações para arquivos de mídia
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Limites para uploads de arquivos (opcional)
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
+>>>>>>> e62255e (Atualizações no projeto)
 
 
 # Internationalization
@@ -166,3 +257,23 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+<<<<<<< HEAD
+=======
+
+# Em settings.py, adicione:
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'multipla_teste': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
+>>>>>>> e62255e (Atualizações no projeto)

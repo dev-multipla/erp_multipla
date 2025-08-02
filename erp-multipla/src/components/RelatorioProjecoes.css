@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .relatorio-projecoes-container {
   display: flex; /* Usamos flexbox para dividir a área */
@@ -114,6 +115,146 @@
   }
 
   .relatorio-projecoes button {
+=======
+/* RelatorioProjecoes.css */
+
+/* Layout geral */
+.app-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Container do relatório ao lado da Sidebar */
+.report-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f4f6f9;
+  overflow: hidden;
+}
+
+/* Cabeçalho do relatório */
+.report-header {
+  padding: 24px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+}
+.report-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #34495e;
+}
+
+/* Formulário de filtros */
+.filters-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 200px;
+}
+.filter-item label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 4px;
+}
+.filter-item input,
+.filter-item select {
+  padding: 8px;
+  font-size: 0.875rem;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+}
+
+/* Botão de filtrar */
+.filter-submit {
+  align-self: flex-end;
+  padding: 10px 24px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.filter-submit:hover {
+  background: #1e40af;
+}
+
+/* Área da tabela e totais */
+.report-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 16px 24px;
+}
+.totals {
+  margin-bottom: 16px;
+}
+.totals p {
+  margin: 4px 0;
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+/* Wrapper da tabela com overflow */
+.table-wrapper {
+  flex: 1;
+  overflow: auto;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  padding: 16px;
+}
+
+/* Tabela */
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.report-table th,
+.report-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ecf0f1;
+  font-size: 0.875rem;
+}
+.report-table th {
+  background: #2980b9;
+  color: #fff;
+  position: sticky;
+  top: 0;              /* mantém o header fixo ao rolar */
+  z-index: 2;
+}
+.report-table tr:hover td {
+  background: #ecf0f1;
+}
+
+/* Mensagem de erro/carregando */
+.report-message {
+  padding: 24px;
+  text-align: center;
+  color: #e74c3c;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .filters-form {
+    flex-direction: column;
+  }
+  .filter-submit {
+>>>>>>> e62255e (Atualizações no projeto)
     width: 100%;
   }
 }

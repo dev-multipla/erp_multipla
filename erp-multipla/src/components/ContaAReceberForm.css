@@ -17,7 +17,11 @@
   margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
 .cp-header h1 {
+=======
+.cpr-header h1 {
+>>>>>>> e62255e (Atualizações no projeto)
   font-size: 24px;
   color: #2C3E50;
 }
@@ -145,3 +149,39 @@
 .Toastify__toast--error {
   background: #e03131 !important;
 }
+<<<<<<< HEAD
+=======
+
+/* datepicker react */
+.react-datepicker-wrapper {
+  display: block;
+  width: 100%;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.input-justificativa-cr {
+  width: 100%; /* Ocupa 100% da largura do contêiner */
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+  font-family: inherit; /* Usa a mesma fonte do restante do formulário */
+  resize: vertical; /* Permite redimensionar verticalmente */
+  
+}
+>>>>>>> e62255e (Atualizações no projeto)
